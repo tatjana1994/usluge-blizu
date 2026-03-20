@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter, Geist } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import { Navbar } from '@/components/layout/navbar';
+import { Footer } from '@/components/layout/footer';
+import { Toaster } from 'sonner';
+import { SearchParamToasts } from '@/components/ui/search-param-toasts';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,8 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='sr' className={cn("font-sans", geist.variable)}>
-      <body className={inter.className}>{children}</body>
+    <html lang='sr'>
+      <body className={inter.className}>
+        <Navbar />
+        {children}
+        <Footer />
+        <Toaster position='top-right' richColors />
+        <SearchParamToasts />
+      </body>
     </html>
   );
 }
