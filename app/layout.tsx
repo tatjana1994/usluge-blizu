@@ -27,7 +27,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
-        <Toaster position='top-right' richColors />
+        <Toaster position='bottom-center' richColors />
         <SearchParamToasts />
       </body>
     </html>

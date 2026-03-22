@@ -1,31 +1,77 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Footer() {
   return (
-    <footer className='mt-20 border-t border-gray-200 bg-white'>
-      <div className='mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 sm:px-6 lg:px-8 md:flex-row md:items-center md:justify-between'>
-        <div>
-          <p className='text-lg font-semibold tracking-tight text-gray-900'>
-            Usluge<span className='text-blue-600'>Blizu</span>
-          </p>
-          <p className='mt-2 text-sm text-gray-600'>
-            Lokalне usluge blizu tebe.
-          </p>
+    <footer className='border-t border-stone-200 bg-[#fffaf7]'>
+      <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
+        <div className='flex flex-col gap-10 md:flex-row md:items-start md:justify-between'>
+          {/* LOGO + TEXT */}
+          <div className='max-w-sm'>
+            <div className='flex items-center gap-3'>
+              <Image
+                src='/logo.webp'
+                alt='UslugeBlizu'
+                width={40}
+                height={40}
+                className='rounded-lg'
+              />
+
+              <p className='text-lg font-semibold tracking-tight text-stone-900'>
+                Usluge<span className='text-rose-500'>Blizu</span>
+              </p>
+            </div>
+
+            <p className='mt-3 text-sm leading-6 text-stone-600'>
+              Lokalnе usluge blizu tebe. Brzo pronađi pomoć ili ponudi svoju
+              uslugu u svom gradu.
+            </p>
+          </div>
+
+          {/* LINKOVI */}
+          <div className='flex flex-wrap gap-6 text-sm'>
+            <Link
+              href='/oglasi'
+              className='font-medium text-stone-600 transition hover:text-rose-600'
+            >
+              Oglasi
+            </Link>
+
+            <Link
+              href='/postavi'
+              className='font-medium text-stone-600 transition hover:text-rose-600'
+            >
+              Postavi oglas
+            </Link>
+
+            <Link
+              href='/kontakt'
+              className='font-medium text-stone-600 transition hover:text-rose-600'
+            >
+              Kontakt
+            </Link>
+
+            <Link
+              href='/o-nama'
+              className='font-medium text-stone-600 transition hover:text-rose-600'
+            >
+              O nama
+            </Link>
+          </div>
         </div>
 
-        <div className='flex flex-wrap gap-4 text-sm text-gray-600'>
-          <Link href='/oglasi' className='hover:text-gray-900'>
-            Oglasi
-          </Link>
-          <Link href='/postavi' className='hover:text-gray-900'>
-            Postavi oglas
-          </Link>
-          <Link href='/kontakt' className='hover:text-gray-900'>
-            Kontakt
-          </Link>
-          <Link href='/o-nama' className='hover:text-gray-900'>
-            O nama
-          </Link>
+        {/* DONJI DEO */}
+        <div className='mt-10 flex flex-col gap-3 border-t border-stone-200 pt-6 text-xs text-stone-500 md:flex-row md:items-center md:justify-between'>
+          <p>© {new Date().getFullYear()} UslugeBlizu. Sva prava zadržana.</p>
+
+          <div className='flex gap-4'>
+            <Link href='/uslovi-koriscenja' className='hover:text-rose-500'>
+              Uslovi korišćenja
+            </Link>
+            <Link href='/politika-privatnosti' className='hover:text-rose-500'>
+              Politika privatnosti
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -35,5 +35,7 @@ export async function updateProfile(formData: FormData) {
     redirect(`/profil?error=${encodeURIComponent(error.message)}`);
   }
 
-  redirect('/profil?success=Profil je uspesno sacuvan');
+  redirect(
+    `/profil?success=${encodeURIComponent('Profil je uspešno sačuvan')}`,
+  );
 }

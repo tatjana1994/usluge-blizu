@@ -7,6 +7,23 @@ function getString(value: FormDataEntryValue | null) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+function getSignInErrorMessage(message: string) {
+  const normalized = message.toLowerCase();
+
+  if (
+    normalized.includes('invalid login credentials') ||
+    normalized.includes('invalid_credentials')
+  ) {
+    return 'Email ili lozinka nisu ispravni';
+  }
+
+  if (normalized.includes('email not confirmed')) {
+    return 'Email adresa još nije potvrđena';
+  }
+
+  return 'Prijava nije uspela. Pokušaj ponovo';
+}
+
 export async function signUp(formData: FormData) {
   const email = getString(formData.get('email'));
   const password = getString(formData.get('password'));
@@ -15,7 +32,11 @@ export async function signUp(formData: FormData) {
   const city = getString(formData.get('city'));
 
   if (!email || !password) {
-    redirect('/registracija?error=Nedostaje email ili lozinka');
+    redirect(
+      `/registracija?error=${encodeURIComponent(
+        'Nedostaje email ili lozinka',
+      )}`,
+    );
   }
 
   const supabase = await createClient();
@@ -62,7 +83,9 @@ export async function signIn(formData: FormData) {
   const password = getString(formData.get('password'));
 
   if (!email || !password) {
-    redirect('/prijava?error=Nedostaje email ili lozinka');
+    redirect(
+      `/prijava?error=${encodeURIComponent('Nedostaje email ili lozinka')}`,
+    );
   }
 
   const supabase = await createClient();
@@ -73,7 +96,8 @@ export async function signIn(formData: FormData) {
   });
 
   if (error) {
-    redirect(`/prijava?error=${encodeURIComponent(error.message)}`);
+    const friendlyMessage = getSignInErrorMessage(error.message);
+    redirect(`/prijava?error=${encodeURIComponent(friendlyMessage)}`);
   }
 
   redirect('/profil');
