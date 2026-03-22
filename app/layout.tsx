@@ -5,6 +5,7 @@ import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from 'sonner';
 import { SearchParamToasts } from '@/components/ui/search-param-toasts';
+import { Suspense } from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -28,7 +29,9 @@ export default function RootLayout({
         {children}
         <Footer />
         <Toaster position='bottom-center' richColors />
-        <SearchParamToasts />
+        <Suspense fallback={null}>
+          <SearchParamToasts />
+        </Suspense>
       </body>
     </html>
   );
