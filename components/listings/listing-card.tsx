@@ -13,8 +13,22 @@ type ListingCardProps = {
     price_type?: 'fixed' | 'hourly' | null;
     type: 'trazim' | 'nudim';
     image_url?: string | null;
+    category_slug?: string | null;
   };
 };
+
+const categoryImages: Record<string, string> = {
+  lepota: '/images/categories/lepota.png',
+  majstori: '/images/categories/majstori.png',
+  pomoc: '/images/categories/pomoc.png',
+  briga: '/images/categories/briga.png',
+  dvoriste: '/images/categories/dvoriste.png',
+  selidbe: '/images/categories/selidbe.png',
+  ljubimci: '/images/categories/ljubimci.png',
+  it: '/images/categories/it.png',
+};
+
+const defaultListingImage = '/images/categories/default.jpg';
 
 function formatPrice({
   price,
@@ -45,26 +59,29 @@ function formatPrice({
 }
 
 export function ListingCard({ listing }: ListingCardProps) {
+  console.log('listing card', {
+    title: listing.title,
+    image_url: listing.image_url,
+    category_slug: listing.category_slug,
+  });
+  const fallbackImage =
+    (listing.category_slug && categoryImages[listing.category_slug]) ||
+    defaultListingImage;
+
+  const displayImage = listing.image_url || fallbackImage;
+
   return (
     <Link
       href={`/oglasi/${listing.slug}`}
       className='group block overflow-hidden rounded-[28px] border border-stone-300 bg-[#fffaf7] shadow-[0_8px_24px_rgba(47,38,34,0.06)] transition duration-200 hover:shadow-[0_14px_32px_rgba(47,38,34,0.10)]'
     >
       <div className='relative aspect-[16/10] overflow-hidden bg-[#f6ede7]'>
-        {listing.image_url ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={listing.image_url}
-            alt={listing.title}
-            className='h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]'
-          />
-        ) : (
-          <div className='flex h-full w-full items-center justify-center bg-gradient-to-br from-[#fff4ee] to-[#f7ece6]'>
-            <div className='rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-medium text-stone-500 shadow-sm'>
-              UslugeBlizu
-            </div>
-          </div>
-        )}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={displayImage}
+          alt={listing.title}
+          className='h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]'
+        />
 
         <div className='absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4'>
           <TypeBadge type={listing.type} />

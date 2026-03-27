@@ -49,6 +49,21 @@ export default async function PostaviPage({
     );
   }
 
+  const order = [
+    'lepota',
+    'majstori',
+    'pomoc',
+    'briga',
+    'dvoriste',
+    'selidbe',
+    'ljubimci',
+    'it',
+  ];
+
+  const sortedCategories = categories?.sort(
+    (a, b) => order.indexOf(a.slug) - order.indexOf(b.slug),
+  );
+
   return (
     <main className='min-h-screen bg-[var(--background)]'>
       <section className='relative overflow-hidden border-b border-[var(--border)] bg-[#fff7f2]'>
@@ -173,10 +188,13 @@ export default async function PostaviPage({
                   <select
                     name='categoryId'
                     required
+                    defaultValue=''
                     className={selectClassName}
                   >
-                    <option value=''>Izaberi kategoriju</option>
-                    {categories?.map((category) => (
+                    <option value='' disabled>
+                      Odaberi vrstu usluge
+                    </option>
+                    {sortedCategories?.map((category) => (
                       <option key={category.id} value={category.id}>
                         {category.name}
                       </option>

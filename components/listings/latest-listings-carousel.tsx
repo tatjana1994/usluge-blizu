@@ -11,8 +11,11 @@ type Listing = {
   city: string;
   area?: string | null;
   price?: number | null;
+  price_currency?: 'RSD' | 'EUR' | null;
+  price_type?: 'fixed' | 'hourly' | null;
   type: 'trazim' | 'nudim';
   image_url?: string | null;
+  category_slug?: string | null;
 };
 
 export function LatestListingsCarousel({ listings }: { listings: Listing[] }) {
@@ -21,7 +24,6 @@ export function LatestListingsCarousel({ listings }: { listings: Listing[] }) {
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={10}
-        // navigation
         pagination={{ clickable: true }}
         breakpoints={{
           0: {

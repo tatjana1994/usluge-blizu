@@ -8,8 +8,52 @@ import {
   inputClassName,
   selectClassName,
 } from '@/lib/constants/ui';
-import { ListingCard } from '@/components/listings/listing-card';
 import { LatestListingsCarousel } from '@/components/listings/latest-listings-carousel';
+
+function pickMixedListings<
+  T extends {
+    categories?: { slug?: string | null }[] | { slug?: string | null } | null;
+  },
+>(listings: T[], limit: number) {
+  const byCategory = new Map<string, T[]>();
+  const uncategorized: T[] = [];
+
+  for (const listing of listings) {
+    const categorySlug = Array.isArray(listing.categories)
+      ? (listing.categories[0]?.slug ?? null)
+      : (listing.categories?.slug ?? null);
+
+    if (!categorySlug) {
+      uncategorized.push(listing);
+      continue;
+    }
+
+    if (!byCategory.has(categorySlug)) {
+      byCategory.set(categorySlug, []);
+    }
+
+    byCategory.get(categorySlug)!.push(listing);
+  }
+
+  const result: T[] = [];
+
+  // prvo po jedan iz svake kategorije
+  for (const items of byCategory.values()) {
+    if (items.length > 0 && result.length < limit) {
+      result.push(items.shift()!);
+    }
+  }
+
+  // pa dopuni ostatkom
+  const remaining = [...byCategory.values()].flat().concat(uncategorized);
+
+  for (const item of remaining) {
+    if (result.length >= limit) break;
+    result.push(item);
+  }
+
+  return result;
+}
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -17,11 +61,26 @@ export default async function HomePage() {
   const { data: latestListings } = await supabase
     .from('listings')
     .select(
-      'id, title, slug, city, area, price, price_currency, price_type, type',
+      `
+      id,
+      title,
+      slug,
+      city,
+      area,
+      price,
+      price_currency,
+      price_type,
+      type,
+      categories (
+        slug
+      )
+    `,
     )
     .eq('status', 'approved')
     .order('created_at', { ascending: false })
-    .limit(6);
+    .limit(20);
+
+  const mixedLatestListings = pickMixedListings(latestListings ?? [], 6);
 
   const { data: categories } = await supabase
     .from('categories')
@@ -281,9 +340,13 @@ export default async function HomePage() {
             </SectionCard>
           ) : (
             <LatestListingsCarousel
-              listings={latestListings.map((listing) => ({
+              listings={mixedLatestListings.map((listing) => ({
                 ...listing,
                 type: listing.type as 'trazim' | 'nudim',
+                category_slug: Array.isArray(listing.categories)
+                  ? (listing.categories[0]?.slug ?? null)
+                  : ((listing.categories as { slug?: string } | null)?.slug ??
+                    null),
               }))}
             />
           )}
