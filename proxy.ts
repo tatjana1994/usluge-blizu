@@ -17,7 +17,7 @@ function startsWithAny(pathname: string, prefixes: string[]) {
   );
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({
     request,
   });
@@ -54,7 +54,6 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const recoveryMode = request.cookies.get('recovery_mode')?.value === '1';
 
-  // Ako nema user-a, recovery cookie ne treba da postoji.
   if (recoveryMode && !user) {
     response.cookies.set('recovery_mode', '', {
       path: '/',
@@ -63,8 +62,6 @@ export async function middleware(request: NextRequest) {
     return response;
   }
 
-  // Ako korisnik ode na prijavu/registraciju normalnim putem,
-  // očisti eventualno zaostali recovery cookie.
   if (recoveryMode && CLEAR_RECOVERY_ON_ROUTES.includes(pathname)) {
     response.cookies.set('recovery_mode', '', {
       path: '/',
