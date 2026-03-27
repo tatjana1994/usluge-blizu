@@ -1,6 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase/server';
 
 function getString(value: FormDataEntryValue | null) {
@@ -23,6 +24,20 @@ function getSignInErrorMessage(message: string) {
 
   return 'Prijava nije uspela. Pokušaj ponovo';
 }
+
+async function clearRecoveryModeCookie() {
+  const cookieStore = await cookies();
+
+  cookieStore.set('recovery_mode', '', {
+    path: '/',
+    expires: new Date(0),
+  });
+}
+
+export type SignInFormState = {
+  error: string;
+  email: string;
+};
 
 export async function signUp(formData: FormData) {
   const email = getString(formData.get('email'));
@@ -75,17 +90,22 @@ export async function signUp(formData: FormData) {
     }
   }
 
+  await clearRecoveryModeCookie();
   redirect('/profil');
 }
 
-export async function signIn(formData: FormData) {
+export async function signIn(
+  _prevState: SignInFormState,
+  formData: FormData,
+): Promise<SignInFormState> {
   const email = getString(formData.get('email'));
   const password = getString(formData.get('password'));
 
   if (!email || !password) {
-    redirect(
-      `/prijava?error=${encodeURIComponent('Nedostaje email ili lozinka')}`,
-    );
+    return {
+      error: 'Nedostaje email ili lozinka',
+      email,
+    };
   }
 
   const supabase = await createClient();
@@ -96,15 +116,20 @@ export async function signIn(formData: FormData) {
   });
 
   if (error) {
-    const friendlyMessage = getSignInErrorMessage(error.message);
-    redirect(`/prijava?error=${encodeURIComponent(friendlyMessage)}`);
+    return {
+      error: getSignInErrorMessage(error.message),
+      email,
+    };
   }
 
+  await clearRecoveryModeCookie();
   redirect('/profil');
 }
 
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
+
+  await clearRecoveryModeCookie();
   redirect('/prijava');
 }

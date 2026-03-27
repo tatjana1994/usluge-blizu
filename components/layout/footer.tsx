@@ -4,7 +4,7 @@ import Image from 'next/image';
 export function Footer() {
   return (
     <footer className='border-t border-stone-200 bg-[#fffaf7]'>
-      <div className='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
+      <div className='mx-auto max-w-7xl px-4 py-12 sm:px-4 lg:px-8'>
         <div className='flex flex-col gap-10 md:flex-row md:items-start md:justify-between'>
           {/* LOGO + TEXT */}
           <div className='max-w-sm'>
@@ -29,7 +29,7 @@ export function Footer() {
           </div>
 
           {/* LINKOVI */}
-          <div className='flex flex-wrap gap-6 text-sm'>
+          <div className='flex flex-wrap gap-4 text-sm'>
             <Link
               href='/oglasi'
               className='font-medium text-stone-600 transition hover:text-rose-600'

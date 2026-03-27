@@ -162,6 +162,7 @@ export function NotificationBell({
     const unreadIds = notifications
       .filter((item) => !item.is_read)
       .map((i) => i.id);
+
     if (!unreadIds.length) return;
 
     setNotifications((prev) =>
@@ -188,12 +189,14 @@ export function NotificationBell({
       <button
         type='button'
         onClick={() => setOpen((prev) => !prev)}
-        className='relative cursor-pointer flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 bg-white transition hover:bg-rose-50'
+        className='relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-stone-200 bg-white transition hover:bg-rose-50'
         aria-label='Obaveštenja'
         aria-expanded={open}
       >
         <svg
-          className='h-5 w-5 text-stone-600'
+          className={`h-5 w-5 transition-colors ${
+            open ? 'text-rose-500' : 'text-stone-600'
+          }`}
           fill='none'
           stroke='currentColor'
           strokeWidth='1.8'
@@ -214,14 +217,14 @@ export function NotificationBell({
       </button>
 
       <div
-        className={`absolute right-0 top-12 z-50 w-[360px] origin-top-right overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-[0_20px_60px_rgba(47,38,34,0.12)] transition-all duration-200 ${
+        className={`fixed left-0 right-0 top-20 z-50 max-h-[75vh] origin-top overflow-hidden rounded-b-3xl lg:rounded-3xl border border-stone-200 bg-white shadow-[0_20px_60px_rgba(47,38,34,0.12)] transition-all duration-200 sm:absolute sm:left-auto sm:right-0 sm:top-12 sm:w-[360px] sm:max-h-none sm:origin-top-right ${
           open
             ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
             : 'pointer-events-none -translate-y-2 scale-95 opacity-0'
         }`}
       >
-        <div className='flex items-center justify-between border-b border-stone-100 px-5 py-4'>
-          <div>
+        <div className='flex items-start justify-between gap-3 border-b border-stone-100 px-4 py-4 sm:items-center sm:px-5'>
+          <div className='min-w-0'>
             <p className='text-sm font-semibold text-stone-900'>Obaveštenja</p>
             <p className='mt-1 text-xs text-stone-500'>
               {unreadCount > 0
@@ -233,15 +236,15 @@ export function NotificationBell({
           <button
             type='button'
             onClick={markAllAsRead}
-            className='text-xs cursor-pointer font-medium text-rose-600 transition hover:text-rose-700'
+            className='shrink-0 cursor-pointer text-sm font-medium text-rose-600 transition hover:text-rose-700'
           >
             Označi sve
           </button>
         </div>
 
-        <div className='max-h-[420px] overflow-y-auto'>
+        <div className='max-h-[calc(75vh-140px)] overflow-y-auto sm:max-h-[420px]'>
           {notifications.length === 0 ? (
-            <div className='px-5 py-8 text-center'>
+            <div className='px-4 py-8 text-center sm:px-5'>
               <p className='text-sm font-medium text-stone-900'>
                 Nema obaveštenja
               </p>
@@ -258,12 +261,12 @@ export function NotificationBell({
                   void markOneAsRead(notification.id);
                   setOpen(false);
                 }}
-                className={`block border-b border-stone-100 px-5 py-4 transition hover:bg-[#fff8f4] ${
+                className={`block border-b border-stone-100 px-4 py-4 transition hover:bg-[#fff8f4] sm:px-5 ${
                   !notification.is_read ? 'bg-rose-50/40' : 'bg-white'
                 }`}
               >
                 <div className='flex items-start justify-between gap-3'>
-                  <div className='min-w-0'>
+                  <div className='min-w-0 flex-1'>
                     <div
                       className={`inline-flex rounded-full border px-2.5 py-1 text-[11px] font-medium ${getTypeStyles(
                         notification.type,
@@ -272,7 +275,7 @@ export function NotificationBell({
                       {notification.title}
                     </div>
 
-                    <p className='mt-3 text-sm leading-6 text-stone-700'>
+                    <p className='mt-3 pr-1 text-sm leading-6 text-stone-700'>
                       {notification.message}
                     </p>
 
@@ -290,7 +293,7 @@ export function NotificationBell({
           )}
         </div>
 
-        <div className='border-t border-stone-100 px-5 py-4'>
+        <div className='border-t border-stone-100 px-4 py-4 sm:px-5'>
           <Link
             href='/obavestenja'
             onClick={() => setOpen(false)}

@@ -1,6 +1,22 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 
+const PROTECTED_ROUTE_PREFIXES = [
+  '/profil',
+  '/moji-oglasi',
+  '/admin',
+  '/obavestenja',
+  '/odjava',
+];
+
+const CLEAR_RECOVERY_ON_ROUTES = ['/prijava', '/registracija'];
+
+function startsWithAny(pathname: string, prefixes: string[]) {
+  return prefixes.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
+}
+
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
     request,
@@ -15,7 +31,7 @@ export async function middleware(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) =>
+          cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value),
           );
 
@@ -31,7 +47,40 @@ export async function middleware(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const pathname = request.nextUrl.pathname;
+  const recoveryMode = request.cookies.get('recovery_mode')?.value === '1';
+
+  // Ako nema user-a, recovery cookie ne treba da postoji.
+  if (recoveryMode && !user) {
+    response.cookies.set('recovery_mode', '', {
+      path: '/',
+      expires: new Date(0),
+    });
+    return response;
+  }
+
+  // Ako korisnik ode na prijavu/registraciju normalnim putem,
+  // očisti eventualno zaostali recovery cookie.
+  if (recoveryMode && CLEAR_RECOVERY_ON_ROUTES.includes(pathname)) {
+    response.cookies.set('recovery_mode', '', {
+      path: '/',
+      expires: new Date(0),
+    });
+    return response;
+  }
+
+  const isProtectedRoute = startsWithAny(pathname, PROTECTED_ROUTE_PREFIXES);
+
+  if (recoveryMode && user && isProtectedRoute) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/azuriraj-lozinku';
+    url.search = '';
+    return NextResponse.redirect(url);
+  }
 
   return response;
 }

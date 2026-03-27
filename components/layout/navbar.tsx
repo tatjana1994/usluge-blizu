@@ -1,14 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase/server';
 import { NotificationBell } from '@/components/notifications/notification-bell';
 import { NavLink } from '@/components/nav-link';
+import { MobileNav } from '@/components/layout/mobile-nav';
 
 export async function Navbar() {
+  const cookieStore = await cookies();
+  const recoveryMode = cookieStore.get('recovery_mode')?.value === '1';
+
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  const showAuthenticatedUi = !!user && !recoveryMode;
 
   let isAdmin = false;
 
@@ -23,7 +30,7 @@ export async function Navbar() {
     created_at: string;
   }[] = [];
 
-  if (user) {
+  if (showAuthenticatedUi && user) {
     const { data: profile } = await supabase
       .from('profiles')
       .select('role')
@@ -45,10 +52,17 @@ export async function Navbar() {
       (notifications as typeof initialNotifications | null) ?? [];
   }
 
+  const notificationSlot =
+    showAuthenticatedUi && user ? (
+      <NotificationBell
+        userId={user.id}
+        initialNotifications={initialNotifications}
+      />
+    ) : null;
+
   return (
     <header className='sticky top-0 z-40 border-b border-stone-200 bg-white/80 backdrop-blur-md'>
       <div className='mx-auto flex max-w-7xl items-center justify-between px-4 py-4'>
-        {/* LOGO */}
         <Link href='/' className='flex items-center gap-2'>
           <Image
             src='/logo.webp'
@@ -63,23 +77,15 @@ export async function Navbar() {
           </span>
         </Link>
 
-        {/* DESKTOP NAV */}
-        <nav className='hidden items-center gap-6 md:flex'>
+        <nav className='hidden items-center gap-4 md:flex'>
           <NavLink href='/oglasi'>Oglasi</NavLink>
-
           <NavLink href='/postavi'>Postavi oglas</NavLink>
 
-          {user ? (
+          {showAuthenticatedUi ? (
             <>
               <NavLink href='/moji-oglasi'>Moji oglasi</NavLink>
-
-              <NotificationBell
-                userId={user.id}
-                initialNotifications={initialNotifications}
-              />
-
-              {isAdmin && <NavLink href='/admin/oglasi'>Admin</NavLink>}
-
+              {notificationSlot}
+              {isAdmin ? <NavLink href='/admin/oglasi'>Admin</NavLink> : null}
               <Link
                 href='/profil'
                 className='rounded-xl bg-rose-500 px-4 py-2 text-md font-bold text-white transition hover:bg-rose-600'
@@ -97,31 +103,11 @@ export async function Navbar() {
           )}
         </nav>
 
-        {/* MOBILE */}
-        <div className='md:hidden'>
-          {user ? (
-            <div className='flex items-center gap-2'>
-              <NotificationBell
-                userId={user.id}
-                initialNotifications={initialNotifications}
-              />
-
-              <Link
-                href='/profil'
-                className='rounded-xl bg-rose-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-rose-600'
-              >
-                Profil
-              </Link>
-            </div>
-          ) : (
-            <Link
-              href='/prijava'
-              className='rounded-xl bg-rose-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-rose-600'
-            >
-              Prijava
-            </Link>
-          )}
-        </div>
+        <MobileNav
+          user={showAuthenticatedUi && user ? { id: user.id } : null}
+          isAdmin={showAuthenticatedUi ? isAdmin : false}
+          notificationSlot={showAuthenticatedUi ? notificationSlot : null}
+        />
       </div>
     </header>
   );

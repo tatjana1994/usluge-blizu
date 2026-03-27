@@ -14,7 +14,7 @@ export default function NotFound() {
         <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(233,213,203,0.65),transparent_30%)]' />
 
         <Container className='relative flex min-h-[calc(100vh-160px)] items-center justify-center py-16 lg:py-24'>
-          <SectionCard className='w-full max-w-5xl border-stone-200 bg-white/95 p-8 text-center shadow-lg sm:p-12'>
+          <SectionCard className='w-full max-w-5xl border-stone-200 bg-white/95 p-4 text-center shadow-lg sm:p-12'>
             <div className='mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-lg font-semibold text-rose-600'>
               404
             </div>

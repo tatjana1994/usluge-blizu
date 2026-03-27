@@ -13,15 +13,18 @@ export function SearchParamToasts() {
     const success = searchParams.get('success');
     const error = searchParams.get('error');
 
-    if (success) {
+    const disabledRoutes = ['/prijava', '/registracija'];
+    const disableToast = disabledRoutes.includes(pathname);
+
+    if (success && !disableToast) {
       toast.success(success);
     }
 
-    if (error) {
+    if (error && !disableToast) {
       toast.error(error);
     }
 
-    if (success || error) {
+    if ((success || error) && !disableToast) {
       const params = new URLSearchParams(searchParams.toString());
       params.delete('success');
       params.delete('error');
