@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/layout/navbar';
@@ -12,9 +11,18 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: 'UslugeBlizu',
-  description: 'Lokalne usluge blizu tebe.',
+export const metadata = {
+  title: 'UslugeBlizu - Lokalni oglasi usluga',
+  description:
+    'Pronađi ili objavi uslugu u svom gradu. Majstori, čišćenje, čuvanje dece, selidbe i još mnogo toga.',
+  icons: {
+    icon: '/favicon.ico',
+  },
+  openGraph: {
+    title: 'UslugeBlizu',
+    description: 'Lokalna platforma za usluge. Pronađi ili objavi oglas.',
+    images: ['/og-image.png'],
+  },
 };
 
 export default function RootLayout({

@@ -10,6 +10,12 @@ import {
 } from '@/lib/constants/ui';
 import { LatestListingsCarousel } from '@/components/listings/latest-listings-carousel';
 
+export const metadata = {
+  title: 'UslugeBlizu - Pronađi uslugu u svom gradu',
+  description:
+    'Lokalni oglasi za usluge. Brzo pronađi majstora, pomoć u kući, čuvanje dece i još mnogo toga.',
+};
+
 function pickMixedListings<
   T extends {
     categories?: { slug?: string | null }[] | { slug?: string | null } | null;

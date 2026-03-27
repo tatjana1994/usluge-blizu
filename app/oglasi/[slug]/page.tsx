@@ -10,6 +10,40 @@ import {
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const supabase = await createClient();
+
+  const { data: listing } = await supabase
+    .from('listings')
+    .select('title, description, city')
+    .eq('slug', slug)
+    .single();
+
+  if (!listing) {
+    return {
+      title: 'Oglas',
+    };
+  }
+
+  return {
+    title: `${listing.title} | ${listing.city} | UslugeBlizu`,
+    description: listing.description?.slice(0, 150),
+    openGraph: {
+      title: listing.title,
+      description: listing.description,
+      url: `/oglasi/${slug}`,
+      siteName: 'UslugeBlizu',
+      images: ['/og-image.jpg'], // kasnije može dynamic
+    },
+  };
+}
+
 function formatListingPrice({
   price,
   priceCurrency,

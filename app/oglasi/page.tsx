@@ -10,6 +10,12 @@ import {
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
 
+export const metadata = {
+  title: 'Oglasi usluga | UslugeBlizu',
+  description:
+    'Pregledaj oglase usluga u svom gradu. Majstori, čišćenje, selidbe i još mnogo toga.',
+};
+
 type SearchParams = Promise<{
   q?: string;
   city?: string;
