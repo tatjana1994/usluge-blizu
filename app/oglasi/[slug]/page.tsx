@@ -9,6 +9,7 @@ import {
   primaryButtonClassName,
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
+import { ListingCard } from '@/components/listings/listing-card';
 
 export async function generateMetadata({
   params,
@@ -39,7 +40,7 @@ export async function generateMetadata({
       description: listing.description,
       url: `/oglasi/${slug}`,
       siteName: 'UslugeBlizu',
-      images: ['/og-image.jpg'], // kasnije može dynamic
+      images: ['/og-image.png'], // kasnije može dynamic
     },
   };
 }
@@ -85,6 +86,7 @@ export default async function OglasDetaljPage({
     .select(
       `
       id,
+      category_id,
       title,
       slug,
       description,
@@ -114,12 +116,34 @@ export default async function OglasDetaljPage({
     notFound();
   }
 
-  const { data: relatedListings } = await supabase
+  const { data: relatedListings, error: relatedListingsError } = await supabase
     .from('listings')
-    .select('id, title, slug, city, area, price, price_currency, price_type')
+    .select(
+      `
+    id,
+    title,
+    slug,
+    city,
+    area,
+    price,
+    price_currency,
+    price_type,
+    type,
+    categories (
+      slug
+    )
+  `,
+    )
     .eq('status', 'approved')
+    .eq('category_id', listing.category_id)
+    .eq('city', listing.city)
     .neq('id', listing.id)
+    .order('created_at', { ascending: false })
     .limit(3);
+
+  if (relatedListingsError) {
+    console.error(relatedListingsError);
+  }
 
   const categoryName =
     Array.isArray(listing.categories) && listing.categories.length > 0
@@ -412,39 +436,31 @@ export default async function OglasDetaljPage({
             ) : (
               <div className='grid gap-4 md:grid-cols-2 xl:grid-cols-3'>
                 {relatedListings.map((item) => (
-                  <Link
+                  <ListingCard
                     key={item.id}
-                    href={`/oglasi/${item.slug}`}
-                    className='rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-rose-200 hover:shadow-md'
-                  >
-                    <h3 className='text-lg font-semibold tracking-tight text-stone-900 transition hover:text-rose-600'>
-                      {item.title}
-                    </h3>
-
-                    <p className='mt-2 text-sm text-stone-600'>
-                      {item.city}
-                      {item.area ? `, ${item.area}` : ''}
-                    </p>
-
-                    <div className='mt-5 flex items-center justify-between'>
-                      <p className='text-sm font-medium text-stone-900'>
-                        {formatListingPrice({
-                          price: item.price,
-                          priceCurrency: item.price_currency as
-                            | 'RSD'
-                            | 'EUR'
-                            | null,
-                          priceType: item.price_type as
-                            | 'fixed'
-                            | 'hourly'
-                            | null,
-                        })}
-                      </p>
-                      <span className='text-sm font-medium text-rose-600'>
-                        Detalji
-                      </span>
-                    </div>
-                  </Link>
+                    listing={{
+                      id: item.id,
+                      title: item.title,
+                      slug: item.slug,
+                      city: item.city,
+                      area: item.area,
+                      price: item.price,
+                      price_currency: item.price_currency as
+                        | 'RSD'
+                        | 'EUR'
+                        | null,
+                      price_type: item.price_type as 'fixed' | 'hourly' | null,
+                      type: item.type as 'trazim' | 'nudim',
+                      image_url:
+                        'image_url' in item
+                          ? (item.image_url as string | null)
+                          : null,
+                      category_slug: Array.isArray(item.categories)
+                        ? (item.categories[0]?.slug ?? null)
+                        : ((item.categories as { slug?: string } | null)
+                            ?.slug ?? null),
+                    }}
+                  />
                 ))}
               </div>
             )}

@@ -59,11 +59,6 @@ function formatPrice({
 }
 
 export function ListingCard({ listing }: ListingCardProps) {
-  console.log('listing card', {
-    title: listing.title,
-    image_url: listing.image_url,
-    category_slug: listing.category_slug,
-  });
   const fallbackImage =
     (listing.category_slug && categoryImages[listing.category_slug]) ||
     defaultListingImage;
