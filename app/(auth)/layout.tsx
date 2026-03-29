@@ -12,6 +12,7 @@ export default function AuthLayout({
         <Link href='/' className='flex items-center gap-2'>
           <Image
             src='/logo.webp'
+            loading='eager'
             alt='UslugeBlizu'
             width={40}
             height={40}

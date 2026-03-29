@@ -177,7 +177,7 @@ export default async function HomePage() {
                 </label>
                 <input
                   name='city'
-                  placeholder='npr. Subotica'
+                  placeholder='npr. Unesite grad'
                   className={inputClassName}
                 />
               </div>

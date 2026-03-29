@@ -29,7 +29,7 @@ export default function ONamaPage() {
               jednostavno, lokalno i bez komplikacije.
             </p>
 
-            <div className='mt-8 flex flex-wrap gap-3'>
+            <div className='mt-8 flex flex-col xs:flex-row gap-3'>
               <Link href='/oglasi' className={primaryButtonClassName}>
                 Pregledaj oglase
               </Link>
@@ -175,21 +175,21 @@ export default function ONamaPage() {
           </div>
 
           <div className='grid gap-4 md:grid-cols-2 xl:grid-cols-4'>
-            <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
+            <SectionCard className='border-stone-200 bg-white/95 p-4 shadow-sm'>
               <p className='text-sm font-bold text-stone-900'>Pretraga</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Pregled oglasa po vrsti usluge, gradu i tipu objave.
               </p>
             </SectionCard>
 
-            <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
+            <SectionCard className='border-stone-200 bg-white/95 p-4 shadow-sm'>
               <p className='text-sm font-bold text-stone-900'>Objava</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Unos osnovnih podataka i slanje oglasa na pregled.
               </p>
             </SectionCard>
 
-            <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
+            <SectionCard className='border-stone-200 bg-white/95 p-4 shadow-sm'>
               <p className='text-sm font-bold text-stone-900'>Pregled</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Provera oglasa pre objave radi urednosti i boljeg kvaliteta
@@ -197,7 +197,7 @@ export default function ONamaPage() {
               </p>
             </SectionCard>
 
-            <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
+            <SectionCard className='border-stone-200 bg-white/95 p-4 shadow-sm'>
               <p className='text-sm font-bold text-stone-900'>Kontakt</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Direktno povezivanje sa osobom koja traži ili nudi uslugu.
@@ -209,7 +209,7 @@ export default function ONamaPage() {
 
       <section className='bg-[var(--background)] py-14 lg:py-16'>
         <Container>
-          <div className='rounded-3xl border border-rose-200 bg-[#fff1ea] px-8 py-10 lg:px-12 lg:py-12'>
+          <div className='rounded-3xl border border-rose-200 bg-[#fff1ea] px-4 sm:px-8 py-10 lg:px-12 lg:py-12'>
             <div className='flex justify-between w-full gap-4 flex-col lg:flex-row lg:items-center'>
               <div className='w-full'>
                 <p className='text-lg font-medium text-rose-600'>Počni odmah</p>
@@ -222,7 +222,7 @@ export default function ONamaPage() {
                 </p>
               </div>
 
-              <div className='flex w-full gap-3 justify-start lg:justify-end'>
+              <div className='flex flex-col xs:flex-row w-full gap-3 justify-start lg:justify-end'>
                 <Link href='/oglasi' className={secondaryButtonClassName}>
                   Pregledaj oglase
                 </Link>

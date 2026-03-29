@@ -6,12 +6,12 @@ export function Footer() {
     <footer className='border-t border-stone-200 bg-[#fffaf7]'>
       <div className='mx-auto max-w-7xl px-4 py-12 sm:px-4 lg:px-8'>
         <div className='flex flex-col gap-10 md:flex-row md:items-start md:justify-between'>
-          {/* LOGO + TEXT */}
           <div className='max-w-sm'>
             <div className='flex items-center gap-3'>
               <Image
                 src='/logo.webp'
                 alt='UslugeBlizu'
+                loading='eager'
                 width={40}
                 height={40}
                 className='rounded-lg'

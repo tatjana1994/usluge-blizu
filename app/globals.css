@@ -94,3 +94,7 @@ select {
 .latest-listings-swiper .swiper-pagination-bullet-active {
   background: #b76e79;
 }
+
+@theme {
+  --breakpoint-xs: 30rem; /* 480px */
+}

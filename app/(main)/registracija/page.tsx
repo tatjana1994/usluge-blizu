@@ -91,7 +91,7 @@ export default async function RegistracijaPage({
                   <input
                     name='fullName'
                     type='text'
-                    placeholder='Tatjana Devrnja'
+                    placeholder='Unesite ime i prezime'
                     className={inputClassName}
                   />
                 </div>
@@ -115,7 +115,7 @@ export default async function RegistracijaPage({
                   <input
                     name='city'
                     type='text'
-                    placeholder='Subotica'
+                    placeholder='Unesite grad'
                     className={inputClassName}
                   />
                 </div>

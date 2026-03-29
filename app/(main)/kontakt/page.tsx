@@ -28,7 +28,7 @@ export default function KontaktPage() {
               otvoren. Odgovor stiže u najkraćem mogućem roku.
             </p>
 
-            <div className='mt-8 flex flex-wrap gap-3'>
+            <div className='mt-8 flex  flex-col xs:flex-row gap-3'>
               <Link href='/oglasi' className={secondaryButtonClassName}>
                 Pregledaj oglase
               </Link>
@@ -146,7 +146,7 @@ export default function KontaktPage() {
 
       <section className='bg-[var(--background)] py-14 lg:py-16'>
         <Container>
-          <div className='rounded-3xl border border-rose-200 bg-[#fff1ea] px-8 py-10 lg:px-12 lg:py-12'>
+          <div className='rounded-3xl border border-rose-200 bg-[#fff1ea] px-4 py-8 lg:px-12 lg:py-12'>
             <div className='flex justify-between w-full gap-4 flex-col lg:flex-row lg:items-center'>
               <div>
                 <p className='text-lg font-medium text-rose-600'>
@@ -161,7 +161,7 @@ export default function KontaktPage() {
                 </p>
               </div>
 
-              <div className='flex w-full gap-3 justify-start lg:justify-end'>
+              <div className='flex w-full flex-col xs:flex-row gap-3 justify-start lg:justify-end'>
                 <Link href='/oglasi' className={secondaryButtonClassName}>
                   Pregledaj oglase
                 </Link>

@@ -1,39 +1,31 @@
-// lib/utils/format-listing-price.ts
-type PriceCurrency = 'RSD' | 'EUR' | null | undefined;
-type PriceType = 'fixed' | 'hourly' | null | undefined;
+import type { ListingCurrency, ListingPriceType } from '@/lib/types/listing';
+
+type Params = {
+  price?: number | null;
+  priceCurrency?: ListingCurrency;
+  priceType?: ListingPriceType;
+};
 
 export function formatListingPrice({
   price,
   priceCurrency,
   priceType,
-}: {
-  price: number | string | null | undefined;
-  priceCurrency?: PriceCurrency;
-  priceType?: PriceType;
-}) {
-  if (price === null || price === undefined || price === '') {
-    return 'Po dogovoru';
-  }
-
-  const numericPrice =
-    typeof price === 'number' ? price : Number(String(price).replace(',', '.'));
-
-  if (Number.isNaN(numericPrice)) {
-    return 'Po dogovoru';
-  }
+}: Params) {
+  if (price === null || price === undefined) return 'Po dogovoru';
 
   const currency = priceCurrency === 'EUR' ? 'EUR' : 'RSD';
-  const formattedNumber =
+
+  const formatted =
     currency === 'RSD'
       ? new Intl.NumberFormat('sr-RS', {
           maximumFractionDigits: 0,
-        }).format(numericPrice)
+        }).format(price)
       : new Intl.NumberFormat('sr-RS', {
-          minimumFractionDigits: numericPrice % 1 === 0 ? 0 : 2,
+          minimumFractionDigits: Number.isInteger(price) ? 0 : 2,
           maximumFractionDigits: 2,
-        }).format(numericPrice);
+        }).format(price);
 
   const suffix = priceType === 'hourly' ? ' / sat' : '';
 
-  return `${formattedNumber} ${currency}${suffix}`;
+  return `${formatted} ${currency}${suffix}`;
 }

@@ -239,7 +239,7 @@ export default async function PostaviPage({
                       name='city'
                       type='text'
                       required
-                      placeholder='Subotica'
+                      placeholder='Unesite grad'
                       className={inputClassName}
                     />
                   </div>
@@ -251,7 +251,7 @@ export default async function PostaviPage({
                     <input
                       name='area'
                       type='text'
-                      placeholder='Palić'
+                      placeholder='Unesite naselje/selo'
                       className={inputClassName}
                     />
                   </div>
@@ -267,7 +267,7 @@ export default async function PostaviPage({
                       type='number'
                       min='0'
                       step='0.01'
-                      placeholder='3000'
+                      placeholder='Unesite cenu'
                       className={inputClassName}
                     />
                   </div>
@@ -376,7 +376,7 @@ export default async function PostaviPage({
                   <input
                     name='contactEmail'
                     type='email'
-                    placeholder='kontakt@email.com'
+                    placeholder='Unesite email adresu'
                     className={inputClassName}
                   />
                 </div>

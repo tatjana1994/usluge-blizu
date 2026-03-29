@@ -1,69 +1,28 @@
 import Link from 'next/link';
+import {
+  CATEGORY_IMAGES,
+  DEFAULT_LISTING_IMAGE,
+} from '@/lib/constants/listing';
+import type { ListingCardItem } from '@/lib/types/listing';
+import { formatListingPrice } from '@/lib/utils/format-listing-price';
 import { TypeBadge } from '@/components/ui/type-badge';
 
 type ListingCardProps = {
-  listing: {
-    id: string;
-    title: string;
-    slug: string;
-    city: string;
-    area?: string | null;
-    price?: number | null;
-    price_currency?: 'RSD' | 'EUR' | null;
-    price_type?: 'fixed' | 'hourly' | null;
-    type: 'trazim' | 'nudim';
-    image_url?: string | null;
-    category_slug?: string | null;
-  };
+  listing: ListingCardItem;
 };
 
-const categoryImages: Record<string, string> = {
-  lepota: '/images/categories/lepota.png',
-  majstori: '/images/categories/majstori.png',
-  pomoc: '/images/categories/pomoc.png',
-  briga: '/images/categories/briga.png',
-  dvoriste: '/images/categories/dvoriste.png',
-  selidbe: '/images/categories/selidbe.png',
-  ljubimci: '/images/categories/ljubimci.png',
-  it: '/images/categories/it.png',
-};
+function getListingImage(listing: ListingCardItem) {
+  if (listing.image_url) return listing.image_url;
 
-const defaultListingImage = '/images/categories/default.jpg';
+  if (listing.category_slug && CATEGORY_IMAGES[listing.category_slug]) {
+    return CATEGORY_IMAGES[listing.category_slug];
+  }
 
-function formatPrice({
-  price,
-  priceCurrency,
-  priceType,
-}: {
-  price?: number | null;
-  priceCurrency?: 'RSD' | 'EUR' | null;
-  priceType?: 'fixed' | 'hourly' | null;
-}) {
-  if (price === null || price === undefined) return 'Po dogovoru';
-
-  const currency = priceCurrency === 'EUR' ? 'EUR' : 'RSD';
-
-  const formatted =
-    currency === 'RSD'
-      ? new Intl.NumberFormat('sr-RS', {
-          maximumFractionDigits: 0,
-        }).format(price)
-      : new Intl.NumberFormat('sr-RS', {
-          minimumFractionDigits: Number.isInteger(price) ? 0 : 2,
-          maximumFractionDigits: 2,
-        }).format(price);
-
-  const suffix = priceType === 'hourly' ? ' / sat' : '';
-
-  return `${formatted} ${currency}${suffix}`;
+  return DEFAULT_LISTING_IMAGE;
 }
 
 export function ListingCard({ listing }: ListingCardProps) {
-  const fallbackImage =
-    (listing.category_slug && categoryImages[listing.category_slug]) ||
-    defaultListingImage;
-
-  const displayImage = listing.image_url || fallbackImage;
+  const imageSrc = getListingImage(listing);
 
   return (
     <Link
@@ -73,7 +32,7 @@ export function ListingCard({ listing }: ListingCardProps) {
       <div className='relative aspect-[16/10] overflow-hidden bg-[#f6ede7]'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={displayImage}
+          src={imageSrc}
           alt={listing.title}
           className='h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]'
         />
@@ -82,7 +41,7 @@ export function ListingCard({ listing }: ListingCardProps) {
           <TypeBadge type={listing.type} />
 
           <div className='rounded-full bg-white/90 px-3 py-1.5 text-md font-bold text-stone-700 shadow-sm backdrop-blur'>
-            {formatPrice({
+            {formatListingPrice({
               price: listing.price,
               priceCurrency: listing.price_currency,
               priceType: listing.price_type,

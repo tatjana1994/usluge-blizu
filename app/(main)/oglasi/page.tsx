@@ -4,11 +4,10 @@ import { Container } from '@/components/layout/container';
 import { SectionCard } from '@/components/ui/section-card';
 import { TypeBadge } from '@/components/ui/type-badge';
 import { EmptyState } from '@/components/ui/empty-state';
-import {
-  inputClassName,
-  selectClassName,
-  secondaryButtonClassName,
-} from '@/lib/constants/ui';
+import { SearchInput } from '@/components/listings/search-input';
+import { Pagination } from '@/components/ui/pagination';
+import { buildPageHref } from '@/lib/utils/build-page-href';
+import { selectClassName, secondaryButtonClassName } from '@/lib/constants/ui';
 
 export const metadata = {
   title: 'Oglasi usluga | UslugeBlizu',
@@ -52,31 +51,6 @@ function formatListingPrice({
   const suffix = priceType === 'hourly' ? ' / sat' : '';
 
   return `${formatted} ${currency}${suffix}`;
-}
-
-function buildPageHref({
-  page,
-  q,
-  city,
-  type,
-  category,
-}: {
-  page: number;
-  q?: string;
-  city?: string;
-  type?: string;
-  category?: string;
-}) {
-  const params = new URLSearchParams();
-
-  if (q) params.set('q', q);
-  if (city) params.set('city', city);
-  if (type) params.set('type', type);
-  if (category) params.set('category', category);
-  if (page > 1) params.set('page', String(page));
-
-  const query = params.toString();
-  return query ? `/oglasi?${query}` : '/oglasi';
 }
 
 export default async function OglasiPage({
@@ -173,6 +147,18 @@ export default async function OglasiPage({
   const endResult =
     totalResults === 0 ? 0 : Math.min(from + PAGE_SIZE, totalResults);
 
+  const listingPaginationHref = (page: number) =>
+    buildPageHref({
+      basePath: '/oglasi',
+      page,
+      params: {
+        q,
+        city,
+        type,
+        category,
+      },
+    });
+
   return (
     <main className='min-h-screen bg-[var(--background)]'>
       <section className='relative border-b border-[var(--border)] bg-[#fff7f2]'>
@@ -235,105 +221,102 @@ export default async function OglasiPage({
                   </p>
                 </div>
 
-                <form className='space-y-4' method='GET'>
-                  <div>
-                    <label className='mb-1.5 block text-sm font-medium text-stone-700'>
-                      Pretraga
-                    </label>
-                    <input
-                      name='q'
-                      defaultValue={q}
-                      placeholder='majstor, čišćenje...'
-                      className={inputClassName}
-                    />
-                  </div>
+                <div className='space-y-4'>
+                  <SearchInput
+                    label='Pretraga'
+                    placeholder='majstor, čišćenje...'
+                  />
 
-                  <div>
-                    <label className='mb-1.5 block text-sm font-medium text-stone-700'>
-                      Grad
-                    </label>
-                    <input
-                      name='city'
-                      defaultValue={city}
-                      placeholder='Subotica'
-                      className={inputClassName}
-                    />
-                  </div>
+                  <form className='space-y-4' method='GET'>
+                    {q ? <input type='hidden' name='q' value={q} /> : null}
 
-                  <div className='relative'>
-                    <label className='mb-1.5 block text-sm font-medium text-stone-700'>
-                      Tip oglasa
-                    </label>
-                    <select
-                      name='type'
-                      defaultValue={type}
-                      className={selectClassName}
-                    >
-                      <option value=''>Svi oglasi</option>
-                      <option value='trazim'>Tražim uslugu</option>
-                      <option value='nudim'>Nudim uslugu</option>
-                    </select>
-                    <svg
-                      className='pointer-events-none absolute right-1 top-10 h-6 w-6 text-stone-500'
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M6 8L10 12L14 8'
-                        stroke='currentColor'
-                        strokeWidth='1.8'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
+                    <div>
+                      <label className='mb-1.5 block text-sm font-medium text-stone-700'>
+                        Grad
+                      </label>
+                      <input
+                        name='city'
+                        defaultValue={city}
+                        placeholder='Unesite grad'
+                        className='h-12 w-full rounded-xl border border-stone-200 bg-white px-4 text-sm text-stone-700 outline-none transition placeholder:text-stone-400 focus:border-rose-300 focus:ring-4 focus:ring-rose-100'
                       />
-                    </svg>
-                  </div>
+                    </div>
 
-                  <div className='relative'>
-                    <label className='mb-1.5 block text-sm font-medium text-stone-700'>
-                      Kategorija
-                    </label>
-                    <select
-                      name='category'
-                      defaultValue={category}
-                      className={selectClassName}
-                    >
-                      <option value=''>Sve kategorije</option>
-                      {categories?.map((cat) => (
-                        <option key={cat.id} value={cat.id}>
-                          {cat.name}
-                        </option>
-                      ))}
-                    </select>
-                    <svg
-                      className='pointer-events-none absolute right-1 top-10 h-6 w-6 text-stone-500'
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M6 8L10 12L14 8'
-                        stroke='currentColor'
-                        strokeWidth='1.8'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                      />
-                    </svg>
-                  </div>
+                    <div className='relative'>
+                      <label className='mb-1.5 block text-sm font-medium text-stone-700'>
+                        Tip oglasa
+                      </label>
+                      <select
+                        name='type'
+                        defaultValue={type}
+                        className={selectClassName}
+                      >
+                        <option value=''>Svi oglasi</option>
+                        <option value='trazim'>Tražim uslugu</option>
+                        <option value='nudim'>Nudim uslugu</option>
+                      </select>
+                      <svg
+                        className='pointer-events-none absolute right-1 top-10 h-6 w-6 text-stone-500'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          d='M6 8L10 12L14 8'
+                          stroke='currentColor'
+                          strokeWidth='1.8'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                      </svg>
+                    </div>
 
-                  <div className='flex gap-3 pt-2'>
-                    <button
-                      type='submit'
-                      className='flex-1 cursor-pointer rounded-xl bg-rose-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-rose-600'
-                    >
-                      Primeni
-                    </button>
+                    <div className='relative'>
+                      <label className='mb-1.5 block text-sm font-medium text-stone-700'>
+                        Kategorija
+                      </label>
+                      <select
+                        name='category'
+                        defaultValue={category}
+                        className={selectClassName}
+                      >
+                        <option value=''>Sve kategorije</option>
+                        {categories?.map((cat) => (
+                          <option key={cat.id} value={cat.id}>
+                            {cat.name}
+                          </option>
+                        ))}
+                      </select>
+                      <svg
+                        className='pointer-events-none absolute right-1 top-10 h-6 w-6 text-stone-500'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          d='M6 8L10 12L14 8'
+                          stroke='currentColor'
+                          strokeWidth='1.8'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                      </svg>
+                    </div>
 
-                    <Link href='/oglasi' className={secondaryButtonClassName}>
-                      Reset
-                    </Link>
-                  </div>
-                </form>
+                    <div className='flex gap-3 pt-2'>
+                      <button
+                        type='submit'
+                        className='flex-1 cursor-pointer rounded-xl bg-rose-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-rose-600'
+                      >
+                        Primeni
+                      </button>
+
+                      <Link href='/oglasi' className={secondaryButtonClassName}>
+                        Reset
+                      </Link>
+                    </div>
+                  </form>
+                </div>
               </SectionCard>
             </aside>
 
@@ -388,7 +371,7 @@ export default async function OglasiPage({
                 {totalResults > 0 ? (
                   <p className='text-sm text-stone-500'>
                     Prikazano {startResult}–{endResult} od ukupno {totalResults}{' '}
-                    {totalResults === 1 ? 'oglasa' : 'oglasa'}
+                    oglasa
                   </p>
                 ) : null}
               </div>
@@ -493,74 +476,11 @@ export default async function OglasiPage({
                     })}
                   </div>
 
-                  {totalPages > 1 ? (
-                    <div className='mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-stone-200 bg-white/80 px-4 py-4 shadow-sm sm:flex-row sm:px-5'>
-                      {safeCurrentPage === 1 ? (
-                        <span className='inline-flex min-w-[120px] cursor-not-allowed items-center justify-center rounded-xl border border-stone-200 bg-stone-100 px-4 py-3 text-sm font-medium text-stone-400 opacity-60'>
-                          ← Prethodna
-                        </span>
-                      ) : (
-                        <Link
-                          href={buildPageHref({
-                            page: safeCurrentPage - 1,
-                            q,
-                            city,
-                            type,
-                            category,
-                          })}
-                          className='inline-flex min-w-[120px] items-center justify-center rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-700 transition hover:border-rose-200 hover:text-rose-600'
-                        >
-                          ← Prethodna
-                        </Link>
-                      )}
-
-                      <div className='flex flex-wrap items-center justify-center gap-2'>
-                        {Array.from({ length: totalPages }, (_, index) => {
-                          const pageNumber = index + 1;
-                          const isActive = pageNumber === safeCurrentPage;
-
-                          return (
-                            <Link
-                              key={pageNumber}
-                              href={buildPageHref({
-                                page: pageNumber,
-                                q,
-                                city,
-                                type,
-                                category,
-                              })}
-                              className={`inline-flex h-10 min-w-10 items-center justify-center rounded-xl px-3 text-sm font-medium transition ${
-                                isActive
-                                  ? 'bg-rose-500 text-white'
-                                  : 'border border-stone-200 bg-white text-stone-700 hover:border-rose-200 hover:text-rose-600'
-                              }`}
-                            >
-                              {pageNumber}
-                            </Link>
-                          );
-                        })}
-                      </div>
-
-                      {safeCurrentPage === totalPages ? (
-                        <span className='inline-flex min-w-[120px] cursor-not-allowed items-center justify-center rounded-xl border border-stone-200 bg-stone-100 px-4 py-3 text-sm font-medium text-stone-400 opacity-70'>
-                          Sledeća →
-                        </span>
-                      ) : (
-                        <Link
-                          href={buildPageHref({
-                            page: safeCurrentPage + 1,
-                            q,
-                            city,
-                            type,
-                            category,
-                          })}
-                          className='inline-flex min-w-[120px] items-center justify-center rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm font-medium text-stone-700 transition hover:border-rose-200 hover:text-rose-600'
-                        >
-                          Sledeća →
-                        </Link>
-                      )}
-                    </div>
-                  ) : null}
+                  <Pagination
+                    currentPage={safeCurrentPage}
+                    totalPages={totalPages}
+                    buildHref={listingPaginationHref}
+                  />
                 </>
               )}
             </section>
