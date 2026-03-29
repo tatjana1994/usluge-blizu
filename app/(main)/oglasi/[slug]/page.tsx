@@ -10,67 +10,112 @@ import {
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
 import { ListingCard } from '@/components/listings/listing-card';
+import { formatListingPrice } from '@/lib/utils/format-listing-price';
+
+import type { Metadata } from 'next';
+
+import {
+  getListingSeoByCategory,
+  getListingFallbackDescription,
+} from '@/lib/seo/listing-seo';
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
 
   const supabase = await createClient();
 
   const { data: listing } = await supabase
     .from('listings')
-    .select('title, description, city')
+    .select(
+      `
+      title,
+      description,
+      city,
+      type,
+      categories (
+        slug
+      )
+    `,
+    )
     .eq('slug', slug)
+    .eq('status', 'approved')
     .single();
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const url = `${baseUrl}/oglasi/${slug}`;
 
   if (!listing) {
     return {
-      title: 'Oglas',
+      title: 'Oglas nije pronađen | UslugeBlizu',
+      description: 'Traženi oglas nije pronađen na platformi UslugeBlizu.',
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
-  return {
-    title: `${listing.title} | ${listing.city} | UslugeBlizu`,
-    description: listing.description?.slice(0, 150),
-    openGraph: {
+  const categorySlug =
+    Array.isArray(listing.categories) && listing.categories.length > 0
+      ? listing.categories[0].slug
+      : null;
+
+  const seoConfig = getListingSeoByCategory(categorySlug);
+
+  const title = `${listing.title} | ${listing.city} | ${
+    listing.type === 'trazim' ? 'Tražim uslugu' : 'Nudim uslugu'
+  } | UslugeBlizu`;
+
+  const description =
+    listing.description?.trim().slice(0, 155) ||
+    getListingFallbackDescription({
       title: listing.title,
-      description: listing.description,
-      url: `/oglasi/${slug}`,
+      city: listing.city,
+      type: listing.type,
+      categorySlug,
+    });
+
+  const keywords = [
+    listing.title,
+    listing.city,
+    ...(listing.type === 'trazim' ? ['tražim uslugu'] : ['nudim uslugu']),
+    ...seoConfig.keywords,
+    ...seoConfig.keywords.map((keyword) => `${keyword} ${listing.city}`),
+  ];
+
+  return {
+    title,
+    description,
+    keywords,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
       siteName: 'UslugeBlizu',
-      images: ['/og-image.png'], // kasnije može dynamic
+      type: 'website',
+      images: [
+        {
+          url: '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: listing.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/og-image.png'],
     },
   };
-}
-
-function formatListingPrice({
-  price,
-  priceCurrency,
-  priceType,
-}: {
-  price?: number | null;
-  priceCurrency?: 'RSD' | 'EUR' | null;
-  priceType?: 'fixed' | 'hourly' | null;
-}) {
-  if (price === null || price === undefined) return 'Po dogovoru';
-
-  const currency = priceCurrency === 'EUR' ? 'EUR' : 'RSD';
-
-  const formatted =
-    currency === 'RSD'
-      ? new Intl.NumberFormat('sr-RS', {
-          maximumFractionDigits: 0,
-        }).format(price)
-      : new Intl.NumberFormat('sr-RS', {
-          minimumFractionDigits: Number.isInteger(price) ? 0 : 2,
-          maximumFractionDigits: 2,
-        }).format(price);
-
-  const suffix = priceType === 'hourly' ? ' / sat' : '';
-
-  return `${formatted} ${currency}${suffix}`;
 }
 
 export default async function OglasDetaljPage({
@@ -120,19 +165,19 @@ export default async function OglasDetaljPage({
     .from('listings')
     .select(
       `
-    id,
-    title,
-    slug,
-    city,
-    area,
-    price,
-    price_currency,
-    price_type,
-    type,
-    categories (
-      slug
-    )
-  `,
+      id,
+      title,
+      slug,
+      city,
+      area,
+      price,
+      price_currency,
+      price_type,
+      type,
+      categories (
+        slug
+      )
+    `,
     )
     .eq('status', 'approved')
     .eq('category_id', listing.category_id)

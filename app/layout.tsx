@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from 'sonner';
 import { SearchParamToasts } from '@/components/ui/search-param-toasts';
 import { Suspense } from 'react';
+import { BASE_URL } from '@/lib/config';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -10,15 +11,43 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: 'UslugeBlizu - Lokalni oglasi usluga',
+  metadataBase: new URL(BASE_URL),
+
+  title: {
+    default: 'UslugeBlizu - Pronađi ili ponudi uslugu u svom gradu',
+    template: '%s | UslugeBlizu',
+  },
+
   description:
-    'Pronađi ili objavi uslugu u svom gradu. Majstori, čišćenje, čuvanje dece, selidbe i još mnogo toga.',
+    'Lokalni oglasi za sve vrste usluga. Pronađi ili ponudi uslugu u svom gradu i poveži se brzo sa ljudima koji traže ili nude usluge.',
+
   icons: {
     icon: '/favicon.ico',
   },
+
   openGraph: {
-    title: 'UslugeBlizu',
-    description: 'Lokalna platforma za usluge. Pronađi ili objavi oglas.',
+    title: 'UslugeBlizu - Pronađi ili ponudi uslugu',
+    description:
+      'Platforma za lokalne oglase usluga. Pronađi ili ponudi uslugu u svom gradu brzo i jednostavno.',
+    url: BASE_URL,
+    siteName: 'UslugeBlizu',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'UslugeBlizu platforma za usluge',
+      },
+    ],
+    locale: 'sr_RS',
+    type: 'website',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'UslugeBlizu - Pronađi ili ponudi uslugu',
+    description:
+      'Lokalni oglasi za usluge. Brzo pronađi ili ponudi uslugu u svom gradu.',
     images: ['/og-image.png'],
   },
 };

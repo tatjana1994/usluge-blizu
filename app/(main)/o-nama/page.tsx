@@ -6,6 +6,12 @@ import {
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
 
+export const metadata = {
+  title: 'O nama | UslugeBlizu',
+  description:
+    'UslugeBlizu je platforma koja povezuje ljude koji traže i nude usluge u svom gradu. Naš cilj je da olakšamo pronalaženje i ponudu usluga u lokalnoj zajednici.',
+};
+
 export default function ONamaPage() {
   return (
     <main className='min-h-screen bg-[var(--background)]'>

@@ -5,6 +5,7 @@ import { Container } from '@/components/layout/container';
 import { SectionCard } from '@/components/ui/section-card';
 import { markNotificationAsRead } from '@/app/actions/notifications';
 import { formatListingPrice } from '@/lib/utils/format-listing-price';
+import { formatDateTime } from '@/lib/utils/format-date-time';
 
 function getTypeStyles(type: string) {
   switch (type) {
@@ -17,15 +18,6 @@ function getTypeStyles(type: string) {
     default:
       return 'border-stone-200 bg-stone-50 text-stone-700';
   }
-}
-
-function formatTime(value: string) {
-  return new Date(value).toLocaleString('sr-RS', {
-    day: '2-digit',
-    month: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
 }
 
 export default async function ObavestenjaPage() {
@@ -149,7 +141,7 @@ export default async function ObavestenjaPage() {
                             )}
 
                             <p className='mt-2 text-xs text-stone-400'>
-                              {formatTime(n.created_at)}
+                              {formatDateTime(n.created_at)}
                             </p>
                           </div>
 

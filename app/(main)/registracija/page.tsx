@@ -3,6 +3,18 @@ import { signUp } from '@/app/actions/auth';
 import { Container } from '@/components/layout/container';
 import { SectionCard } from '@/components/ui/section-card';
 import { inputClassName } from '@/lib/constants/ui';
+import { createClient } from '@/lib/supabase/server';
+import { redirect } from 'next/navigation';
+
+export const metadata = {
+  title: 'Registruj se | UslugeBlizu',
+  description:
+    'Kreiraj nalog i počni da objavljuješ ili pronalaziš usluge u svom gradu.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function RegistracijaPage({
   searchParams,
@@ -11,6 +23,16 @@ export default async function RegistracijaPage({
 }) {
   const params = await searchParams;
   const error = params.error;
+
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect('/profil');
+  }
 
   return (
     <main className='min-h-screen bg-[var(--background)]'>

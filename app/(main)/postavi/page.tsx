@@ -9,6 +9,16 @@ import {
   textareaClassName,
 } from '@/lib/constants/ui';
 
+export const metadata = {
+  title: 'Postavi oglas | UslugeBlizu',
+  description:
+    'Objavite oglas i ponudite ili pronađite uslugu u svom gradu na platformi UslugeBlizu.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default async function PostaviPage({
   searchParams,
 }: {

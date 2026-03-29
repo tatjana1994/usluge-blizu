@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 type MobileNavProps = {
   user: { id: string } | null;
@@ -9,8 +10,22 @@ type MobileNavProps = {
   notificationSlot: React.ReactNode;
 };
 
+function getMobileLinkClass(pathname: string, href: string, bold = true) {
+  const isActive =
+    pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
+
+  return [
+    'rounded-2xl px-4 py-3 transition',
+    bold ? 'text-lg font-bold' : 'text-base font-medium',
+    isActive
+      ? 'bg-rose-50 text-rose-500'
+      : 'text-stone-800 hover:bg-rose-50 hover:text-rose-600',
+  ].join(' ');
+}
+
 export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -27,7 +42,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <div className='md:hidden'>
+    <div className='lg:hidden'>
       <div className='flex items-center gap-2'>
         {user ? notificationSlot : null}
 
@@ -77,7 +92,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
             : 'pointer-events-none opacity-0'
         }`}
       >
-        <div className='flex bg-white h-screen flex-col'>
+        <div className='flex h-screen flex-col bg-white'>
           <div className='flex items-center justify-between border-b border-stone-200 bg-white/90 px-4 py-4 backdrop-blur-md'>
             <p className='text-lg font-bold tracking-tight text-stone-900'>
               Meni
@@ -110,7 +125,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
               <Link
                 href='/oglasi'
                 onClick={closeMenu}
-                className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                className={getMobileLinkClass(pathname, '/oglasi')}
               >
                 Oglasi
               </Link>
@@ -118,7 +133,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
               <Link
                 href='/postavi'
                 onClick={closeMenu}
-                className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                className={getMobileLinkClass(pathname, '/postavi')}
               >
                 Postavi oglas
               </Link>
@@ -128,7 +143,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                   <Link
                     href='/moji-oglasi'
                     onClick={closeMenu}
-                    className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                    className={getMobileLinkClass(pathname, '/moji-oglasi')}
                   >
                     Moji oglasi
                   </Link>
@@ -137,7 +152,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                     <Link
                       href='/admin/oglasi'
                       onClick={closeMenu}
-                      className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                      className={getMobileLinkClass(pathname, '/admin/oglasi')}
                     >
                       Admin
                     </Link>
@@ -177,7 +192,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                 <Link
                   href='/kontakt'
                   onClick={closeMenu}
-                  className='rounded-2xl px-4 py-3 text-base font-medium text-stone-700 transition hover:bg-rose-50 hover:text-rose-600'
+                  className={getMobileLinkClass(pathname, '/kontakt', false)}
                 >
                   Kontakt
                 </Link>
@@ -185,7 +200,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                 <Link
                   href='/o-nama'
                   onClick={closeMenu}
-                  className='rounded-2xl px-4 py-3 text-base font-medium text-stone-700 transition hover:bg-rose-50 hover:text-rose-600'
+                  className={getMobileLinkClass(pathname, '/o-nama', false)}
                 >
                   O nama
                 </Link>
@@ -193,7 +208,11 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                 <Link
                   href='/uslovi-koriscenja'
                   onClick={closeMenu}
-                  className='rounded-2xl px-4 py-3 text-base font-medium text-stone-700 transition hover:bg-rose-50 hover:text-rose-600'
+                  className={getMobileLinkClass(
+                    pathname,
+                    '/uslovi-koriscenja',
+                    false,
+                  )}
                 >
                   Uslovi korišćenja
                 </Link>
@@ -201,7 +220,11 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                 <Link
                   href='/politika-privatnosti'
                   onClick={closeMenu}
-                  className='rounded-2xl px-4 py-3 text-base font-medium text-stone-700 transition hover:bg-rose-50 hover:text-rose-600'
+                  className={getMobileLinkClass(
+                    pathname,
+                    '/politika-privatnosti',
+                    false,
+                  )}
                 >
                   Politika privatnosti
                 </Link>

@@ -11,9 +11,9 @@ import {
 import { LatestListingsCarousel } from '@/components/listings/latest-listings-carousel';
 
 export const metadata = {
-  title: 'UslugeBlizu - Pronađi uslugu u svom gradu',
+  title: 'UslugeBlizu - Pronađi ili ponudi uslugu u svom gradu',
   description:
-    'Lokalni oglasi za usluge. Brzo pronađi majstora, pomoć u kući, čuvanje dece i još mnogo toga.',
+    'Platforma za lokalne oglase usluga. Pronađi ili ponudi uslugu u svom gradu — brzo i jednostavno povezujemo ljude koji traže i nude usluge.',
 };
 
 function pickMixedListings<

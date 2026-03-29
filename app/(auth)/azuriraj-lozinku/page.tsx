@@ -15,6 +15,20 @@ function clearRecoveryModeCookie() {
     'recovery_mode=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax';
 }
 
+function hasRecoveryParams() {
+  if (typeof window === 'undefined') return false;
+
+  const hash = window.location.hash || '';
+  const search = window.location.search || '';
+
+  return (
+    hash.includes('type=recovery') ||
+    search.includes('type=recovery') ||
+    hash.includes('access_token=') ||
+    search.includes('access_token=')
+  );
+}
+
 export default function AzurirajLozinkuPage() {
   const supabase = createClient();
   const router = useRouter();
@@ -29,28 +43,42 @@ export default function AzurirajLozinkuPage() {
   useEffect(() => {
     let mounted = true;
 
-    async function checkSession() {
-      const { data, error } = await supabase.auth.getSession();
+    async function checkAccess() {
+      const recoveryFlow = hasRecoveryParams();
+
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
       if (!mounted) return;
 
-      if (error || !data.session) {
+      // Ako nije recovery flow:
+      // - ulogovan user ide na profil
+      // - neulogovan user ide na zaboravljena-lozinka
+      if (!recoveryFlow) {
         clearRecoveryModeCookie();
-        router.replace('/zaboravljena-lozinka');
+
+        if (user) {
+          router.replace('/profil');
+        } else {
+          router.replace('/zaboravljena-lozinka');
+        }
         return;
       }
 
+      // Ako jeste recovery flow, ostajemo na stranici
       setRecoveryModeCookie();
       setCheckingSession(false);
     }
 
-    checkSession();
+    checkAccess();
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'PASSWORD_RECOVERY') {
         setRecoveryModeCookie();
+        setCheckingSession(false);
       }
     });
 
@@ -97,11 +125,25 @@ export default function AzurirajLozinkuPage() {
     }, 1500);
   }
 
+  if (checkingSession) {
+    return (
+      <main className='min-h-screen bg-[var(--background)]'>
+        <section className='mx-auto flex min-h-screen max-w-[800px] items-center px-4 py-10 sm:px-6 lg:px-8'>
+          <div className='mx-auto w-full rounded-[28px] border border-stone-200/80 bg-white p-4 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
+            <div className='rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-600'>
+              Proveravamo pristup...
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className='min-h-screen bg-[var(--background)]'>
-      <section className='mx-auto flex min-h-none md:min-h-screen max-w-[800px] items-center px-4 pt-20 md:pt-0 md:py:10 sm:px-6 lg:px-8'>
-        <div className='mx-auto w-full  rounded-[28px] border border-stone-200/80 bg-white p-4 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
-          <p className='text-sm text-center font-bold uppercase tracking-[0.16em] text-rose-600'>
+      <section className='mx-auto flex max-w-[800px] min-h-none items-center px-4 pt-20 sm:px-6 lg:px-8 md:min-h-screen md:pt-0'>
+        <div className='mx-auto w-full rounded-[28px] border border-stone-200/80 bg-white p-4 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
+          <p className='text-center text-sm font-bold uppercase tracking-[0.16em] text-rose-600'>
             Nova lozinka
           </p>
 
@@ -164,7 +206,7 @@ export default function AzurirajLozinkuPage() {
               <button
                 type='submit'
                 disabled={loading}
-                className='w-full md:w-[250px] flex justify-center mx-auto cursor-pointer rounded-xl bg-rose-500 px-4 py-3.5 text-lg font-bold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-70'
+                className='mx-auto flex w-full cursor-pointer justify-center rounded-xl bg-rose-500 px-4 py-3.5 text-lg font-bold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-70 md:w-[250px]'
               >
                 {loading ? 'Čuvanje...' : 'Sačuvaj novu lozinku'}
               </button>

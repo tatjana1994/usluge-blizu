@@ -2,6 +2,18 @@ import Link from 'next/link';
 import { Container } from '@/components/layout/container';
 import { SectionCard } from '@/components/ui/section-card';
 import { LoginForm } from './login-form';
+import { redirect } from 'next/navigation';
+import { createClient } from '@/lib/supabase/server';
+
+export const metadata = {
+  title: 'Prijava | UslugeBlizu',
+  description:
+    'Prijavite se na svoj nalog i nastavite sa korišćenjem platforme UslugeBlizu.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const features = [
   {
@@ -64,7 +76,17 @@ const features = [
   },
 ];
 
-export default function PrijavaPage() {
+export default async function PrijavaPage() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect('/profil');
+  }
+
   return (
     <main className='min-h-screen bg-[var(--background)]'>
       <section className='relative overflow-hidden border-b border-[var(--border)] bg-[#fdf7f4]'>

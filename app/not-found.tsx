@@ -6,6 +6,16 @@ import {
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
 
+export const metadata = {
+  title: 'Stranica nije pronađena | UslugeBlizu',
+  description:
+    'Stranica koju tražite ne postoji. Pogledajte dostupne oglase ili se vratite na početnu stranicu.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function NotFound() {
   return (
     <main className='min-h-screen bg-[var(--background)]'>

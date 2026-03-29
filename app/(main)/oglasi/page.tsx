@@ -8,11 +8,12 @@ import { SearchInput } from '@/components/listings/search-input';
 import { Pagination } from '@/components/ui/pagination';
 import { buildPageHref } from '@/lib/utils/build-page-href';
 import { selectClassName, secondaryButtonClassName } from '@/lib/constants/ui';
+import { formatListingPrice } from '@/lib/utils/format-listing-price';
 
 export const metadata = {
   title: 'Oglasi usluga | UslugeBlizu',
   description:
-    'Pregledaj oglase usluga u svom gradu. Majstori, čišćenje, selidbe i još mnogo toga.',
+    'Lokalni oglasi za sve vrste usluga. Pregledaj oglase, pronađi pomoć ili ponudi svoju uslugu u svom gradu na platformi UslugeBlizu.',
 };
 
 type SearchParams = Promise<{
@@ -24,34 +25,6 @@ type SearchParams = Promise<{
 }>;
 
 const PAGE_SIZE = 9;
-
-function formatListingPrice({
-  price,
-  priceCurrency,
-  priceType,
-}: {
-  price?: number | null;
-  priceCurrency?: 'RSD' | 'EUR' | null;
-  priceType?: 'fixed' | 'hourly' | null;
-}) {
-  if (price === null || price === undefined) return 'Po dogovoru';
-
-  const currency = priceCurrency === 'EUR' ? 'EUR' : 'RSD';
-
-  const formatted =
-    currency === 'RSD'
-      ? new Intl.NumberFormat('sr-RS', {
-          maximumFractionDigits: 0,
-        }).format(price)
-      : new Intl.NumberFormat('sr-RS', {
-          minimumFractionDigits: Number.isInteger(price) ? 0 : 2,
-          maximumFractionDigits: 2,
-        }).format(price);
-
-  const suffix = priceType === 'hourly' ? ' / sat' : '';
-
-  return `${formatted} ${currency}${suffix}`;
-}
 
 export default async function OglasiPage({
   searchParams,

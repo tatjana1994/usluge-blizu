@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { NotificationBell } from '@/components/notifications/notification-bell';
+import { NavLink } from '@/components/nav-link';
 
 type HeaderAuthSlotProps = {
   user: { id: string } | null;
@@ -43,42 +44,36 @@ export function HeaderAuthSlot({
           initialNotifications={notifications}
         />
 
-        <Link
+        <NavLink
           href='/profil'
-          className='rounded-xl bg-rose-500 px-4 py-2 text-md font-bold text-white transition hover:bg-rose-600'
+          className='rounded-xl bg-rose-500 px-4 py-2 text-md font-bold !text-white transition hover:bg-rose-600'
         >
           Profil
-        </Link>
+        </NavLink>
       </>
     );
   }
 
   return (
     <>
-      <Link
-        href='/moji-oglasi'
-        className='text-md font-medium text-stone-700 transition hover:text-stone-900'
-      >
+      <NavLink href='/moji-oglasi' className='text-md font-bold'>
         Moji oglasi
-      </Link>
+      </NavLink>
 
       <NotificationBell userId={user.id} initialNotifications={notifications} />
 
       {isAdmin ? (
-        <Link
-          href='/admin/oglasi'
-          className='text-md font-medium text-stone-700 transition hover:text-stone-900'
-        >
+        <NavLink href='/admin/oglasi' className='text-md font-medium'>
           Admin
-        </Link>
+        </NavLink>
       ) : null}
 
-      <Link
+      <NavLink
         href='/profil'
-        className='rounded-xl bg-rose-500 px-4 py-2 text-md font-bold text-white transition hover:bg-rose-600'
+        className='rounded-xl bg-rose-500 px-4 py-2 text-md font-bold !text-white transition hover:bg-rose-600'
       >
         Profil
-      </Link>
+      </NavLink>
     </>
   );
 }

@@ -6,6 +6,15 @@ import { Container } from '@/components/layout/container';
 import { SectionCard } from '@/components/ui/section-card';
 import { ProfileForm } from '@/components/profile/profile-form';
 
+export const metadata = {
+  title: 'Profil | UslugeBlizu',
+  description: 'Pregled i podešavanja vašeg naloga na platformi UslugeBlizu.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default async function ProfilPage() {
   const supabase = await createClient();
 

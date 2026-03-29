@@ -44,14 +44,19 @@ export async function Navbar() {
             loading='eager'
             className='h-auto w-auto object-contain'
           />
-          <span className='truncate hidden sm:block text-xl font-bold text-stone-900'>
+          <span className='hidden truncate text-xl font-bold text-stone-900 sm:block'>
             Usluge<span className='text-rose-500'>Blizu</span>
           </span>
         </Link>
 
         <nav className='hidden items-center gap-4 lg:flex'>
-          <NavLink href='/oglasi'>Oglasi</NavLink>
-          <NavLink href='/postavi'>Postavi oglas</NavLink>
+          <NavLink href='/oglasi' className='text-md font-bold'>
+            Oglasi
+          </NavLink>
+
+          <NavLink href='/postavi' className='text-md font-bold'>
+            Postavi oglas
+          </NavLink>
 
           <HeaderAuthSlot
             user={showAuthenticatedUi && user ? { id: user.id } : null}

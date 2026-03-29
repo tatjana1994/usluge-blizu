@@ -12,6 +12,15 @@ import {
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
 
+export const metadata = {
+  title: 'Izmeni oglas | UslugeBlizu',
+  description: 'Izmenite podatke svog oglasa na platformi UslugeBlizu.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default async function IzmeniOglasPage({
   params,
   searchParams,

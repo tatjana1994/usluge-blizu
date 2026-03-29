@@ -1,16 +1,44 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
 export default function ZaboravljenaLozinkaPage() {
   const supabase = createClient();
+  const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function checkUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!mounted) return;
+
+      if (user) {
+        router.replace('/profil');
+        return;
+      }
+
+      setCheckingAuth(false);
+    }
+
+    checkUser();
+
+    return () => {
+      mounted = false;
+    };
+  }, [router, supabase]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,15 +67,29 @@ export default function ZaboravljenaLozinkaPage() {
     setLoading(false);
   }
 
+  if (checkingAuth) {
+    return (
+      <main className='min-h-screen bg-[var(--background)]'>
+        <section className='mx-auto flex min-h-screen max-w-[800px] items-center px-4 py-10 sm:px-6 lg:px-8'>
+          <div className='mx-auto w-full rounded-[28px] border border-stone-200/80 bg-white p-4 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
+            <div className='rounded-2xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-600'>
+              Proveravamo nalog...
+            </div>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
   return (
     <main className='min-h-screen bg-[var(--background)]'>
       <section className='mx-auto flex min-h-screen max-w-[800px] items-center px-4 py-10 sm:px-6 lg:px-8'>
-        <div className='mx-auto w-full  rounded-[28px] border border-stone-200/80 bg-white p-4 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
-          <p className='text-sm text-center font-bold uppercase tracking-[0.16em] text-rose-600'>
+        <div className='mx-auto w-full rounded-[28px] border border-stone-200/80 bg-white p-4 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
+          <p className='text-center text-sm font-bold uppercase tracking-[0.16em] text-rose-600'>
             Reset lozinke
           </p>
 
-          <h1 className='mt-3 text-3xl text-center font-bold tracking-tight text-stone-900'>
+          <h1 className='mt-3 text-center text-3xl font-bold tracking-tight text-stone-900'>
             Zaboravljena lozinka
           </h1>
 
@@ -69,9 +111,6 @@ export default function ZaboravljenaLozinkaPage() {
 
           <form onSubmit={handleSubmit} className='mt-7 space-y-4'>
             <div>
-              {/* <label className='mb-2 block text-sm font-medium text-stone-700'>
-                Email
-              </label> */}
               <input
                 type='email'
                 required
@@ -85,7 +124,7 @@ export default function ZaboravljenaLozinkaPage() {
             <button
               type='submit'
               disabled={loading}
-              className='w-[250px] justify-center flex mx-auto cursor-pointer rounded-xl bg-rose-500 px-4 py-3.5 text-lg font-bold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-70'
+              className='mx-auto flex w-[250px] justify-center rounded-xl bg-rose-500 px-4 py-3.5 text-lg font-bold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-70'
             >
               {loading ? 'Slanje...' : 'Pošalji link'}
             </button>

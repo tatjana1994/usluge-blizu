@@ -1,6 +1,12 @@
 import { Container } from '@/components/layout/container';
 import { SectionCard } from '@/components/ui/section-card';
 
+export const metadata = {
+  title: 'Uslovi korišćenja | UslugeBlizu',
+  description:
+    'Uslovi korišćenja platforme UslugeBlizu. Pravila i obaveze korisnika prilikom korišćenja sajta.',
+};
+
 export default function UsloviKoriscenjaPage() {
   return (
     <main className='min-h-screen bg-[var(--background)]'>

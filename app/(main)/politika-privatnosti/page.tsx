@@ -1,6 +1,12 @@
 import { Container } from '@/components/layout/container';
 import { SectionCard } from '@/components/ui/section-card';
 
+export const metadata = {
+  title: 'Politika privatnosti | UslugeBlizu',
+  description:
+    'Politika privatnosti platforme UslugeBlizu. Informacije o prikupljanju, obradi i zaštiti vaših ličnih podataka.',
+};
+
 export default function PolitikaPrivatnostiPage() {
   return (
     <main className='min-h-screen bg-[var(--background)]'>

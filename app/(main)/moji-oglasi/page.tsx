@@ -13,6 +13,15 @@ import {
   dangerButtonClassName,
 } from '@/lib/constants/ui';
 
+export const metadata = {
+  title: 'Moji oglasi | UslugeBlizu',
+  description: 'Pregled i upravljanje vašim oglasima na platformi UslugeBlizu.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default async function MojiOglasiPage({
   searchParams,
 }: {

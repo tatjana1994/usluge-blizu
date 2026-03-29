@@ -6,6 +6,12 @@ import {
   secondaryButtonClassName,
 } from '@/lib/constants/ui';
 
+export const metadata = {
+  title: 'Kontakt | UslugeBlizu',
+  description:
+    'Kontaktirajte UslugeBlizu za podršku, pitanja ili saradnju. Tu smo da vam pomognemo da lakše pronađete ili ponudite usluge.',
+};
+
 export default function KontaktPage() {
   return (
     <main className='min-h-screen bg-[var(--background)]'>
