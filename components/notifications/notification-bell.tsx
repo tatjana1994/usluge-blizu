@@ -46,10 +46,13 @@ export function NotificationBell({
   initialNotifications: NotificationItem[];
 }) {
   const supabase = createClient();
+
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] =
     useState<NotificationItem[]>(initialNotifications);
+
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const hasSubscribedRef = useRef(false);
 
   const unreadCount = useMemo(
     () => notifications.filter((item) => !item.is_read).length,
@@ -57,14 +60,8 @@ export function NotificationBell({
   );
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      const baseTitle = 'UslugeBlizu';
-      document.title =
-        unreadCount > 0 ? `(${unreadCount}) ${baseTitle}` : baseTitle;
-    }
-  }, [unreadCount]);
+    if (!open) return;
 
-  useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (!wrapperRef.current) return;
       if (!wrapperRef.current.contains(e.target as Node)) {
@@ -85,9 +82,14 @@ export function NotificationBell({
       document.removeEventListener('mousedown', onClickOutside);
       document.removeEventListener('keydown', onEscape);
     };
-  }, []);
+  }, [open]);
 
   useEffect(() => {
+    if (!open) return;
+    if (hasSubscribedRef.current) return;
+
+    hasSubscribedRef.current = true;
+
     const channel = supabase
       .channel(`notifications:${userId}`)
       .on(
@@ -134,9 +136,9 @@ export function NotificationBell({
       .subscribe();
 
     return () => {
-      supabase.removeChannel(channel);
+      void supabase.removeChannel(channel);
     };
-  }, [supabase, userId]);
+  }, [open, supabase, userId]);
 
   async function markOneAsRead(id: string) {
     setNotifications((prev) =>
@@ -161,7 +163,7 @@ export function NotificationBell({
   async function markAllAsRead() {
     const unreadIds = notifications
       .filter((item) => !item.is_read)
-      .map((i) => i.id);
+      .map((item) => item.id);
 
     if (!unreadIds.length) return;
 
@@ -217,7 +219,7 @@ export function NotificationBell({
       </button>
 
       <div
-        className={`fixed left-0 right-0 top-20 z-50 max-h-[75vh] origin-top overflow-hidden rounded-b-3xl lg:rounded-3xl border border-stone-200 bg-white shadow-[0_20px_60px_rgba(47,38,34,0.12)] transition-all duration-200 sm:absolute sm:left-auto sm:right-0 sm:top-12 sm:w-[360px] sm:max-h-none sm:origin-top-right ${
+        className={`fixed left-0 right-0 top-20 z-50 max-h-[75vh] origin-top overflow-hidden rounded-b-3xl border border-stone-200 bg-white shadow-[0_20px_60px_rgba(47,38,34,0.12)] transition-all duration-200 sm:absolute sm:left-auto sm:right-0 sm:top-12 sm:w-[360px] sm:max-h-none sm:origin-top-right sm:rounded-3xl ${
           open
             ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
             : 'pointer-events-none -translate-y-2 scale-95 opacity-0'
@@ -235,7 +237,7 @@ export function NotificationBell({
 
           <button
             type='button'
-            onClick={markAllAsRead}
+            onClick={() => void markAllAsRead()}
             className='shrink-0 cursor-pointer text-sm font-medium text-rose-600 transition hover:text-rose-700'
           >
             Označi sve
