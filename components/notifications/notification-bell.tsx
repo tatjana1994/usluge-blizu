@@ -225,7 +225,7 @@ export function NotificationBell({
       >
         <div className='flex items-start justify-between gap-3 border-b border-stone-100 px-4 py-4 sm:items-center sm:px-5'>
           <div className='min-w-0'>
-            <p className='text-sm font-semibold text-stone-900'>Obaveštenja</p>
+            <p className='text-sm font-bold text-stone-900'>Obaveštenja</p>
             <p className='mt-1 text-xs text-stone-500'>
               {unreadCount > 0
                 ? `${unreadCount} nepročitanih`

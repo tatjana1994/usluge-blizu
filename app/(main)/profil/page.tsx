@@ -53,7 +53,7 @@ export default async function ProfilPage() {
                   platformi UslugeBlizu.
                 </p>
                 <div className='mt-6 flex items-center gap-3'>
-                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-rose-100 text-sm font-semibold text-rose-600'>
+                  <div className='flex h-10 w-10 items-center justify-center rounded-full bg-rose-100 text-sm font-bold text-rose-600'>
                     {profile?.full_name?.charAt(0) || user.email?.charAt(0)}
                   </div>
 
@@ -111,7 +111,7 @@ export default async function ProfilPage() {
                 <p className='text-md font-medium text-rose-600'>
                   Podešavanja profila
                 </p>
-                <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+                <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                   Osnovni podaci
                 </h2>
                 <p className='mt-2 text-md leading-6 text-stone-600'>

@@ -55,7 +55,7 @@ export default async function IzmeniOglasPage({
         <div className='h-fit space-y-4'>
           <div>
             <p className='text-sm font-medium text-blue-600'>Izmena oglasa</p>
-            <h1 className='mt-2 text-4xl font-semibold tracking-tight text-gray-900'>
+            <h1 className='mt-2 text-4xl font-bold tracking-tight text-gray-900'>
               Izmeni oglas
             </h1>
             <p className='mt-3 text-base leading-7 text-gray-600'>
@@ -107,7 +107,7 @@ export default async function IzmeniOglasPage({
 
             <div className='space-y-5'>
               <div>
-                <h2 className='text-xl font-semibold tracking-tight text-gray-900'>
+                <h2 className='text-xl font-bold tracking-tight text-gray-900'>
                   Osnovne informacije
                 </h2>
                 <p className='mt-1 text-sm text-gray-600'>
@@ -177,7 +177,7 @@ export default async function IzmeniOglasPage({
 
             <div className='space-y-5 border-t border-gray-100 pt-8'>
               <div>
-                <h2 className='text-xl font-semibold tracking-tight text-gray-900'>
+                <h2 className='text-xl font-bold tracking-tight text-gray-900'>
                   Lokacija i cena
                 </h2>
                 <p className='mt-1 text-sm text-gray-600'>
@@ -225,7 +225,7 @@ export default async function IzmeniOglasPage({
 
             <div className='space-y-5 border-t border-gray-100 pt-8'>
               <div>
-                <h2 className='text-xl font-semibold tracking-tight text-gray-900'>
+                <h2 className='text-xl font-bold tracking-tight text-gray-900'>
                   Kontakt podaci
                 </h2>
                 <p className='mt-1 text-sm text-gray-600'>

@@ -81,7 +81,7 @@ export function ListingCard({ listing }: ListingCardProps) {
         <div className='absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4'>
           <TypeBadge type={listing.type} />
 
-          <div className='rounded-full bg-white/90 px-3 py-1.5 text-md font-semibold text-stone-700 shadow-sm backdrop-blur'>
+          <div className='rounded-full bg-white/90 px-3 py-1.5 text-md font-bold text-stone-700 shadow-sm backdrop-blur'>
             {formatPrice({
               price: listing.price,
               priceCurrency: listing.price_currency,

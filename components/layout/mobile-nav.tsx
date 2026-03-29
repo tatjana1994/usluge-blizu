@@ -79,7 +79,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
       >
         <div className='flex bg-white h-screen flex-col'>
           <div className='flex items-center justify-between border-b border-stone-200 bg-white/90 px-4 py-4 backdrop-blur-md'>
-            <p className='text-lg font-semibold tracking-tight text-stone-900'>
+            <p className='text-lg font-bold tracking-tight text-stone-900'>
               Meni
             </p>
 
@@ -110,7 +110,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
               <Link
                 href='/oglasi'
                 onClick={closeMenu}
-                className='rounded-2xl px-4 py-3 text-lg font-semibold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
               >
                 Oglasi
               </Link>
@@ -118,7 +118,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
               <Link
                 href='/postavi'
                 onClick={closeMenu}
-                className='rounded-2xl px-4 py-3 text-lg font-semibold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
               >
                 Postavi oglas
               </Link>
@@ -128,7 +128,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                   <Link
                     href='/moji-oglasi'
                     onClick={closeMenu}
-                    className='rounded-2xl px-4 py-3 text-lg font-semibold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                    className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
                   >
                     Moji oglasi
                   </Link>
@@ -137,7 +137,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
                     <Link
                       href='/admin/oglasi'
                       onClick={closeMenu}
-                      className='rounded-2xl px-4 py-3 text-lg font-semibold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
+                      className='rounded-2xl px-4 py-3 text-lg font-bold text-stone-800 transition hover:bg-rose-50 hover:text-rose-600'
                     >
                       Admin
                     </Link>
@@ -169,7 +169,7 @@ export function MobileNav({ user, isAdmin, notificationSlot }: MobileNavProps) {
             </div>
 
             <div className='mt-8 border-t border-stone-200 pt-6'>
-              <p className='px-4 text-xs font-semibold uppercase tracking-[0.18em] text-stone-400'>
+              <p className='px-4 text-xs font-bold uppercase tracking-[0.18em] text-stone-400'>
                 Dodatno
               </p>
 

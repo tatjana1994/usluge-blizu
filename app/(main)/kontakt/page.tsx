@@ -47,7 +47,7 @@ export default function KontaktPage() {
               <p className='text-md font-medium text-rose-600'>
                 Kontakt informacije
               </p>
-              <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+              <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                 Kako možeš da stupiš u kontakt
               </h2>
               <p className='mt-3 max-w-2xl text-md leading-6 text-stone-600'>
@@ -57,14 +57,14 @@ export default function KontaktPage() {
 
               <div className='mt-8 space-y-4'>
                 <div className='rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>Email</p>
+                  <p className='text-sm font-bold text-stone-900'>Email</p>
                   <p className='mt-1 text-sm leading-6 text-stone-600'>
                     kontakt@uslugeblizu.rs
                   </p>
                 </div>
 
                 <div className='rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Podrška za oglase
                   </p>
                   <p className='mt-1 text-sm leading-6 text-stone-600'>
@@ -73,7 +73,7 @@ export default function KontaktPage() {
                 </div>
 
                 <div className='rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Prijava problema
                   </p>
                   <p className='mt-1 text-sm leading-6 text-stone-600'>
@@ -82,9 +82,7 @@ export default function KontaktPage() {
                 </div>
 
                 <div className='rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
-                    Saradnja
-                  </p>
+                  <p className='text-sm font-bold text-stone-900'>Saradnja</p>
                   <p className='mt-1 text-sm leading-6 text-stone-600'>
                     predlozi za saradnju, partnerstva i razvoj platforme
                   </p>
@@ -96,13 +94,13 @@ export default function KontaktPage() {
               <p className='text-md font-medium text-rose-600'>
                 Najčešća pitanja
               </p>
-              <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+              <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                 Pre nego što pošalješ poruku
               </h2>
 
               <div className='mt-8 space-y-4'>
                 <div className='rounded-2xl border border-rose-100 bg-[#fff8f4] p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Kada će oglas biti objavljen?
                   </p>
                   <p className='mt-2 text-sm leading-6 text-stone-600'>
@@ -112,7 +110,7 @@ export default function KontaktPage() {
                 </div>
 
                 <div className='rounded-2xl border border-rose-100 bg-[#fff8f4] p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Kako mogu da izmenim svoj oglas?
                   </p>
                   <p className='mt-2 text-sm leading-6 text-stone-600'>
@@ -122,7 +120,7 @@ export default function KontaktPage() {
                 </div>
 
                 <div className='rounded-2xl border border-rose-100 bg-[#fff8f4] p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Kako mogu da prijavim neprimeren sadržaj?
                   </p>
                   <p className='mt-2 text-sm leading-6 text-stone-600'>
@@ -132,7 +130,7 @@ export default function KontaktPage() {
                 </div>
 
                 <div className='rounded-2xl border border-rose-100 bg-[#fff8f4] p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Da li je kontakt direktan?
                   </p>
                   <p className='mt-2 text-sm leading-6 text-stone-600'>

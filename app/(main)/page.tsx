@@ -126,23 +126,21 @@ export default async function HomePage() {
 
             <div className='mt-10 grid max-w-2xl gap-4 sm:grid-cols-3'>
               <div className='rounded-2xl border border-stone-200 bg-white/85 p-5 shadow-sm backdrop-blur'>
-                <p className='text-xl font-semibold text-stone-900'>Lokalno</p>
+                <p className='text-xl font-bold text-stone-900'>Lokalno</p>
                 <p className='mt-2 text-sm leading-6 text-stone-600'>
                   Fokus na gradove, naselja i sela
                 </p>
               </div>
 
               <div className='rounded-2xl border border-stone-200 bg-white/85 p-5 shadow-sm backdrop-blur'>
-                <p className='text-xl font-semibold text-stone-900'>
-                  Jednostavno
-                </p>
+                <p className='text-xl font-bold text-stone-900'>Jednostavno</p>
                 <p className='mt-2 text-sm leading-6 text-stone-600'>
                   Bez komplikovanih koraka i viška opcija
                 </p>
               </div>
 
               <div className='rounded-2xl border border-stone-200 bg-white/85 p-5 shadow-sm backdrop-blur'>
-                <p className='text-xl font-semibold text-stone-900'>Brzo</p>
+                <p className='text-xl font-bold text-stone-900'>Brzo</p>
                 <p className='mt-2 text-sm leading-6 text-stone-600'>
                   Do oglasa ili objave za par minuta
                 </p>
@@ -153,7 +151,7 @@ export default async function HomePage() {
           <SectionCard className='border-stone-200 bg-white/95 p-4 shadow-lg lg:p-7'>
             <div className='mb-6'>
               <p className='text-md font-medium text-rose-600'>Brza pretraga</p>
-              <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+              <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                 Nađi ono što ti treba
               </h2>
               <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -241,7 +239,7 @@ export default async function HomePage() {
               <div className='mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-xl font-bold text-rose-600'>
                 1
               </div>
-              <h3 className='text-2xl font-semibold text-stone-900'>
+              <h3 className='text-2xl font-bold text-stone-900'>
                 Pretraži ili objavi
               </h3>
               <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -253,7 +251,7 @@ export default async function HomePage() {
               <div className='mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-xl font-bold text-rose-600'>
                 2
               </div>
-              <h3 className='text-2xl font-semibold text-stone-900'>
+              <h3 className='text-2xl font-bold text-stone-900'>
                 Oglas ide na pregled
               </h3>
               <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -266,7 +264,7 @@ export default async function HomePage() {
               <div className='mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-xl font-bold text-rose-600'>
                 3
               </div>
-              <h3 className='text-2xl font-semibold text-stone-900'>
+              <h3 className='text-2xl font-bold text-stone-900'>
                 Poveži se direktno
               </h3>
               <p className='mt-2 text-md leading-6 text-stone-600'>

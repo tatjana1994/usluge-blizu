@@ -17,7 +17,7 @@ export function Footer() {
                 className='rounded-lg'
               />
 
-              <p className='text-lg font-semibold tracking-tight text-stone-900'>
+              <p className='text-lg font-bold tracking-tight text-stone-900'>
                 Usluge<span className='text-rose-500'>Blizu</span>
               </p>
             </div>

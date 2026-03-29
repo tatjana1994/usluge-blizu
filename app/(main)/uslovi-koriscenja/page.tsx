@@ -29,7 +29,7 @@ export default function UsloviKoriscenjaPage() {
       <section className='py-14 lg:py-16'>
         <Container className='max-w-4xl space-y-6'>
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               1. Opis platforme
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -40,7 +40,7 @@ export default function UsloviKoriscenjaPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               2. Odgovornost korisnika
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -51,7 +51,7 @@ export default function UsloviKoriscenjaPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               3. Objavljivanje oglasa
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -62,7 +62,7 @@ export default function UsloviKoriscenjaPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               4. Ograničenje odgovornosti
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -73,9 +73,7 @@ export default function UsloviKoriscenjaPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
-              5. Zabrane
-            </h2>
+            <h2 className='text-2xl font-bold text-stone-900'>5. Zabrane</h2>
             <ul className='mt-3 space-y-2 text-base leading-7 text-stone-600'>
               <li>• Zabranjen je nelegalan sadržaj</li>
               <li>• Zabranjene su prevare i obmane</li>
@@ -85,7 +83,7 @@ export default function UsloviKoriscenjaPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               6. Izmene uslova
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -95,9 +93,7 @@ export default function UsloviKoriscenjaPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
-              7. Kontakt
-            </h2>
+            <h2 className='text-2xl font-bold text-stone-900'>7. Kontakt</h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
               Za sva pitanja u vezi sa uslovima korišćenja možeš se obratiti
               putem kontakt stranice ili email adrese.

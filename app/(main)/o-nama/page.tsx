@@ -48,7 +48,7 @@ export default function ONamaPage() {
               <div className='mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-xl font-bold text-rose-600'>
                 1
               </div>
-              <h2 className='text-2xl font-semibold text-stone-900'>
+              <h2 className='text-2xl font-bold text-stone-900'>
                 Lokalni fokus
               </h2>
               <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -61,7 +61,7 @@ export default function ONamaPage() {
               <div className='mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-xl font-bold text-rose-600'>
                 2
               </div>
-              <h2 className='text-2xl font-semibold text-stone-900'>
+              <h2 className='text-2xl font-bold text-stone-900'>
                 Jednostavno korišćenje
               </h2>
               <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -74,7 +74,7 @@ export default function ONamaPage() {
               <div className='mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 text-xl font-bold text-rose-600'>
                 3
               </div>
-              <h2 className='text-2xl font-semibold text-stone-900'>
+              <h2 className='text-2xl font-bold text-stone-900'>
                 Direktan kontakt
               </h2>
               <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -119,13 +119,13 @@ export default function ONamaPage() {
 
             <SectionCard className='border-stone-200 bg-white/95 p-4 shadow-lg'>
               <p className='text-md font-medium text-rose-600'>Šta je važno</p>
-              <h3 className='mt-2 text-2xl font-semibold tracking-tight text-stone-900'>
+              <h3 className='mt-2 text-2xl font-bold tracking-tight text-stone-900'>
                 Na čemu gradimo platformu
               </h3>
 
               <div className='mt-6 space-y-4'>
                 <div className='rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Jasni oglasi
                   </p>
                   <p className='mt-1 text-sm leading-6 text-stone-600'>
@@ -135,7 +135,7 @@ export default function ONamaPage() {
                 </div>
 
                 <div className='rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Pouzdan pregled
                   </p>
                   <p className='mt-1 text-sm leading-6 text-stone-600'>
@@ -145,7 +145,7 @@ export default function ONamaPage() {
                 </div>
 
                 <div className='rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Lokalna povezanost
                   </p>
                   <p className='mt-1 text-sm leading-6 text-stone-600'>
@@ -176,21 +176,21 @@ export default function ONamaPage() {
 
           <div className='grid gap-4 md:grid-cols-2 xl:grid-cols-4'>
             <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
-              <p className='text-sm font-semibold text-stone-900'>Pretraga</p>
+              <p className='text-sm font-bold text-stone-900'>Pretraga</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Pregled oglasa po vrsti usluge, gradu i tipu objave.
               </p>
             </SectionCard>
 
             <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
-              <p className='text-sm font-semibold text-stone-900'>Objava</p>
+              <p className='text-sm font-bold text-stone-900'>Objava</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Unos osnovnih podataka i slanje oglasa na pregled.
               </p>
             </SectionCard>
 
             <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
-              <p className='text-sm font-semibold text-stone-900'>Pregled</p>
+              <p className='text-sm font-bold text-stone-900'>Pregled</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Provera oglasa pre objave radi urednosti i boljeg kvaliteta
                 sadržaja.
@@ -198,7 +198,7 @@ export default function ONamaPage() {
             </SectionCard>
 
             <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
-              <p className='text-sm font-semibold text-stone-900'>Kontakt</p>
+              <p className='text-sm font-bold text-stone-900'>Kontakt</p>
               <p className='mt-2 text-sm leading-6 text-stone-600'>
                 Direktno povezivanje sa osobom koja traži ili nudi uslugu.
               </p>

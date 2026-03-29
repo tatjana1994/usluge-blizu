@@ -111,7 +111,7 @@ export default async function MojiOglasiPage({
                 <p className='text-xs font-medium uppercase tracking-wide text-stone-500'>
                   Ukupno oglasa
                 </p>
-                <p className='mt-2 text-3xl font-semibold text-stone-900'>
+                <p className='mt-2 text-3xl font-bold text-stone-900'>
                   {totalListings}
                 </p>
               </SectionCard>
@@ -120,7 +120,7 @@ export default async function MojiOglasiPage({
                 <p className='text-xs font-medium uppercase tracking-wide text-stone-500'>
                   Odobreni
                 </p>
-                <p className='mt-2 text-3xl font-semibold text-emerald-700'>
+                <p className='mt-2 text-3xl font-bold text-emerald-700'>
                   {approvedCount}
                 </p>
               </SectionCard>
@@ -129,7 +129,7 @@ export default async function MojiOglasiPage({
                 <p className='text-xs font-medium uppercase tracking-wide text-stone-500'>
                   Na pregledu
                 </p>
-                <p className='mt-2 text-3xl font-semibold text-amber-700'>
+                <p className='mt-2 text-3xl font-bold text-amber-700'>
                   {pendingCount}
                 </p>
               </SectionCard>
@@ -138,7 +138,7 @@ export default async function MojiOglasiPage({
                 <p className='text-xs font-medium uppercase tracking-wide text-stone-500'>
                   Odbijeni
                 </p>
-                <p className='mt-2 text-3xl font-semibold text-rose-700'>
+                <p className='mt-2 text-3xl font-bold text-rose-700'>
                   {rejectedCount}
                 </p>
               </SectionCard>
@@ -174,7 +174,7 @@ export default async function MojiOglasiPage({
                             }
                           />
 
-                          <span className='inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-600'>
+                          <span className='inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-bold text-rose-600'>
                             {formatListingPrice({
                               price: listing.price,
                               priceCurrency: listing.price_currency as
@@ -189,7 +189,7 @@ export default async function MojiOglasiPage({
                           </span>
                         </div>
 
-                        <h2 className='text-xl font-semibold tracking-tight text-stone-900'>
+                        <h2 className='text-xl font-bold tracking-tight text-stone-900'>
                           {listing.title}
                         </h2>
 

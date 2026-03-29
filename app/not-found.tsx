@@ -15,7 +15,7 @@ export default function NotFound() {
 
         <Container className='relative flex min-h-[calc(100vh-160px)] items-center justify-center py-16 lg:py-24'>
           <SectionCard className='w-full max-w-5xl border-stone-200 bg-white/95 p-4 text-center shadow-lg sm:p-12'>
-            <div className='mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-lg font-semibold text-rose-600'>
+            <div className='mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-lg font-bold text-rose-600'>
               404
             </div>
 

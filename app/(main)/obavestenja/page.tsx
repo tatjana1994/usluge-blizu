@@ -143,7 +143,7 @@ export default async function ObavestenjaPage() {
                             </p>
 
                             {priceText && (
-                              <p className='mt-2 text-sm font-semibold text-rose-600'>
+                              <p className='mt-2 text-sm font-bold text-rose-600'>
                                 {priceText}
                               </p>
                             )}

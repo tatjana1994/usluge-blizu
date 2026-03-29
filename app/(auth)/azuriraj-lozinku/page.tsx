@@ -97,17 +97,17 @@ export default function AzurirajLozinkuPage() {
 
   return (
     <main className='min-h-screen bg-[var(--background)]'>
-      <section className='mx-auto flex min-h-screen max-w-7xl items-center px-4 py-10 sm:px-6 lg:px-8'>
-        <div className='mx-auto w-full max-w-md rounded-[28px] border border-stone-200/80 bg-white p-6 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
-          <p className='text-sm font-semibold uppercase tracking-[0.16em] text-rose-600'>
+      <section className='mx-auto flex min-h-none md:min-h-screen max-w-[800px] items-center px-4 pt-20 md:pt-0 md:py:10 sm:px-6 lg:px-8'>
+        <div className='mx-auto w-full  rounded-[28px] border border-stone-200/80 bg-white p-4 shadow-[0_20px_60px_rgba(28,28,28,0.08)] sm:p-8'>
+          <p className='text-sm text-center font-bold uppercase tracking-[0.16em] text-rose-600'>
             Nova lozinka
           </p>
 
-          <h1 className='mt-3 text-3xl font-semibold tracking-tight text-stone-900'>
+          <h1 className='mt-3 text-center text-3xl font-bold tracking-tight text-stone-900'>
             Postavi novu lozinku
           </h1>
 
-          <p className='mt-3 text-sm leading-6 text-stone-600'>
+          <p className='mt-3 text-center text-sm leading-6 text-stone-600'>
             Unesi novu lozinku za svoj nalog.
           </p>
 
@@ -162,7 +162,7 @@ export default function AzurirajLozinkuPage() {
               <button
                 type='submit'
                 disabled={loading}
-                className='w-full cursor-pointer rounded-xl bg-rose-500 px-4 py-3.5 text-lg font-bold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-70'
+                className='w-full md:w-[250px] flex justify-center mx-auto cursor-pointer rounded-xl bg-rose-500 px-4 py-3.5 text-lg font-bold text-white transition hover:bg-rose-600 disabled:cursor-not-allowed disabled:opacity-70'
               >
                 {loading ? 'Čuvanje...' : 'Sačuvaj novu lozinku'}
               </button>

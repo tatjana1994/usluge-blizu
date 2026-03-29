@@ -110,7 +110,7 @@ export default async function AdminOglasDetaljPage({
                   <p className='text-xs font-medium uppercase tracking-wide text-stone-500'>
                     {listing.price_type === 'hourly' ? 'Cena po satu' : 'Cena'}
                   </p>
-                  <p className='mt-2 text-lg font-semibold text-stone-900'>
+                  <p className='mt-2 text-lg font-bold text-stone-900'>
                     {formatListingPrice({
                       price: listing.price,
                       priceCurrency: listing.price_currency as
@@ -129,7 +129,7 @@ export default async function AdminOglasDetaljPage({
                   <p className='text-xs font-medium uppercase tracking-wide text-stone-500'>
                     Grad
                   </p>
-                  <p className='mt-2 text-lg font-semibold text-stone-900'>
+                  <p className='mt-2 text-lg font-bold text-stone-900'>
                     {listing.city}
                   </p>
                 </div>
@@ -138,7 +138,7 @@ export default async function AdminOglasDetaljPage({
                   <p className='text-xs font-medium uppercase tracking-wide text-stone-500'>
                     Naselje
                   </p>
-                  <p className='mt-2 text-lg font-semibold text-stone-900'>
+                  <p className='mt-2 text-lg font-bold text-stone-900'>
                     {listing.area || 'Nije navedeno'}
                   </p>
                 </div>

@@ -97,7 +97,7 @@ export default function PrijavaPage() {
                     {feature.icon}
                   </div>
 
-                  <p className='mt-4 text-lg font-semibold text-stone-900'>
+                  <p className='mt-4 text-lg font-bold text-stone-900'>
                     {feature.title}
                   </p>
 
@@ -117,11 +117,11 @@ export default function PrijavaPage() {
           <div className='order-1 mx-auto w-full max-w-md lg:order-2'>
             <SectionCard className='rounded-[28px] border border-stone-200/80 bg-white/95 p-5 shadow-[0_20px_60px_rgba(28,28,28,0.08)] backdrop-blur sm:p-8'>
               <div>
-                <p className='text-sm font-semibold uppercase tracking-[0.16em] text-rose-600'>
+                <p className='text-sm font-bold uppercase tracking-[0.16em] text-rose-600'>
                   Prijava
                 </p>
 
-                <h2 className='mt-3 text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl'>
+                <h2 className='mt-3 text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl'>
                   Prijava na nalog
                 </h2>
 
@@ -141,7 +141,7 @@ export default function PrijavaPage() {
                 Nemaš nalog?{' '}
                 <Link
                   href='/registracija'
-                  className='font-semibold text-rose-600 transition hover:text-rose-700 hover:underline'
+                  className='font-bold text-rose-600 transition hover:text-rose-700 hover:underline'
                 >
                   Registracija
                 </Link>

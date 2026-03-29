@@ -29,7 +29,7 @@ export default function PolitikaPrivatnostiPage() {
       <section className='py-14 lg:py-16'>
         <Container className='max-w-4xl space-y-6'>
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               1. Koje podatke prikupljamo
             </h2>
             <ul className='mt-3 space-y-2 text-base leading-7 text-stone-600'>
@@ -41,7 +41,7 @@ export default function PolitikaPrivatnostiPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               2. Kako koristimo podatke
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -57,7 +57,7 @@ export default function PolitikaPrivatnostiPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               3. Deljenje podataka
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -68,7 +68,7 @@ export default function PolitikaPrivatnostiPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               4. Čuvanje podataka
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -78,7 +78,7 @@ export default function PolitikaPrivatnostiPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               5. Tvoja prava
             </h2>
             <ul className='mt-3 space-y-2 text-base leading-7 text-stone-600'>
@@ -90,9 +90,7 @@ export default function PolitikaPrivatnostiPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
-              6. Bezbednost
-            </h2>
+            <h2 className='text-2xl font-bold text-stone-900'>6. Bezbednost</h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
               Preduzimaju se tehničke i organizacione mere kako bi se zaštitili
               podaci korisnika od neovlašćenog pristupa.
@@ -100,7 +98,7 @@ export default function PolitikaPrivatnostiPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
+            <h2 className='text-2xl font-bold text-stone-900'>
               7. Izmene politike
             </h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
@@ -110,9 +108,7 @@ export default function PolitikaPrivatnostiPage() {
           </SectionCard>
 
           <SectionCard className='p-4 lg:p-4'>
-            <h2 className='text-2xl font-semibold text-stone-900'>
-              8. Kontakt
-            </h2>
+            <h2 className='text-2xl font-bold text-stone-900'>8. Kontakt</h2>
             <p className='mt-3 text-base leading-7 text-stone-600'>
               Za pitanja u vezi sa privatnošću i podacima možeš se obratiti
               putem kontakt stranice.

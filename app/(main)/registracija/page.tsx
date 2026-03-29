@@ -36,16 +36,14 @@ export default async function RegistracijaPage({
 
             <div className='mt-10 grid max-w-2xl gap-4 sm:grid-cols-3'>
               <SectionCard className='border-stone-200 bg-white/85 p-5 shadow-sm backdrop-blur'>
-                <p className='text-xl font-semibold text-stone-900'>
-                  Brza objava
-                </p>
+                <p className='text-xl font-bold text-stone-900'>Brza objava</p>
                 <p className='mt-2 text-sm leading-6 text-stone-600'>
                   Kreiranje oglasa i slanje na pregled u nekoliko minuta
                 </p>
               </SectionCard>
 
               <SectionCard className='border-stone-200 bg-white/85 p-5 shadow-sm backdrop-blur'>
-                <p className='text-xl font-semibold text-stone-900'>
+                <p className='text-xl font-bold text-stone-900'>
                   Lokalni fokus
                 </p>
                 <p className='mt-2 text-sm leading-6 text-stone-600'>
@@ -54,7 +52,7 @@ export default async function RegistracijaPage({
               </SectionCard>
 
               <SectionCard className='border-stone-200 bg-white/85 p-5 shadow-sm backdrop-blur'>
-                <p className='text-xl font-semibold text-stone-900'>
+                <p className='text-xl font-bold text-stone-900'>
                   Jednostavan početak
                 </p>
                 <p className='mt-2 text-sm leading-6 text-stone-600'>
@@ -70,7 +68,7 @@ export default async function RegistracijaPage({
                 <p className='text-md font-medium text-rose-600'>
                   Registracija
                 </p>
-                <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+                <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                   Kreiranje naloga
                 </h2>
                 <p className='mt-2 text-md leading-6 text-stone-600'>

@@ -218,7 +218,7 @@ export default async function OglasiPage({
 
               <Link
                 href='/postavi'
-                className='mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-rose-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-rose-600'
+                className='mt-5 inline-flex w-full items-center justify-center rounded-2xl bg-rose-500 px-4 py-3 text-sm font-bold text-white transition hover:bg-rose-600'
               >
                 Postavi oglas
               </Link>
@@ -229,9 +229,7 @@ export default async function OglasiPage({
             <aside className='h-fit self-start lg:sticky lg:top-24'>
               <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
                 <div className='mb-5'>
-                  <h2 className='text-lg font-semibold text-stone-900'>
-                    Filteri
-                  </h2>
+                  <h2 className='text-lg font-bold text-stone-900'>Filteri</h2>
                   <p className='mt-1 text-sm text-stone-600'>
                     Suzi rezultate po onome što je najbitnije.
                   </p>
@@ -435,7 +433,7 @@ export default async function OglasiPage({
                                 ) : null}
                               </div>
 
-                              <h2 className='text-2xl font-semibold tracking-tight text-stone-900 transition group-hover:text-rose-600'>
+                              <h2 className='text-2xl font-bold tracking-tight text-stone-900 transition group-hover:text-rose-600'>
                                 {listing.title}
                               </h2>
 
@@ -456,7 +454,7 @@ export default async function OglasiPage({
                                 </span>
                               </div>
 
-                              <div className='mt-6 inline-flex items-center text-sm font-semibold text-rose-600 transition group-hover:text-rose-700'>
+                              <div className='mt-6 inline-flex items-center text-sm font-bold text-rose-600 transition group-hover:text-rose-700'>
                                 Pogledaj detalje
                                 <span className='ml-2 transition-transform duration-200 group-hover:translate-x-1'>
                                   →
@@ -466,7 +464,7 @@ export default async function OglasiPage({
 
                             <div className='lg:w-[190px] lg:shrink-0'>
                               <div className='rounded-[24px] border border-rose-100 bg-gradient-to-b from-[#fff8f4] to-[#fffdfb] px-5 py-4 text-left shadow-sm lg:text-right'>
-                                <p className='text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500'>
+                                <p className='text-[11px] font-bold uppercase tracking-[0.18em] text-stone-500'>
                                   Cena
                                 </p>
 

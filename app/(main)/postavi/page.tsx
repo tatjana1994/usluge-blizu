@@ -87,7 +87,7 @@ export default async function PostaviPage({
             </div>
 
             <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
-              <p className='text-base font-semibold text-stone-900'>
+              <p className='text-base font-bold text-stone-900'>
                 Kako funkcioniše
               </p>
 
@@ -99,7 +99,7 @@ export default async function PostaviPage({
             </SectionCard>
 
             <SectionCard className='border-stone-200 bg-white/95 p-5 shadow-sm'>
-              <p className='text-base font-semibold text-stone-900'>Saveti</p>
+              <p className='text-base font-bold text-stone-900'>Saveti</p>
 
               <ul className='mt-3 space-y-3 text-sm leading-6 text-stone-600'>
                 <li>• Naslov treba da bude jasan i konkretan</li>
@@ -122,7 +122,7 @@ export default async function PostaviPage({
                   <p className='text-md font-medium text-rose-600'>
                     Osnovne informacije
                   </p>
-                  <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+                  <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                     Podaci o oglasu
                   </h2>
                   <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -222,7 +222,7 @@ export default async function PostaviPage({
                   <p className='text-md font-medium text-rose-600'>
                     Lokacija i cena
                   </p>
-                  <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+                  <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                     Mesto objave
                   </h2>
                   <p className='mt-2 text-md leading-6 text-stone-600'>
@@ -333,7 +333,7 @@ export default async function PostaviPage({
                   <p className='text-md font-medium text-rose-600'>
                     Kontakt podaci
                   </p>
-                  <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+                  <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                     Podaci za kontakt
                   </h2>
                   <p className='mt-2 text-md leading-6 text-stone-600'>

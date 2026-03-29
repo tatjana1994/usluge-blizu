@@ -118,7 +118,7 @@ export default async function AdminOglasiPage({
 
           {!listings || listings.length === 0 ? (
             <SectionCard className='border-stone-200 bg-white/95 p-4 shadow-sm'>
-              <h2 className='text-xl font-semibold text-stone-900'>
+              <h2 className='text-xl font-bold text-stone-900'>
                 Nema oglasa u ovoj sekciji
               </h2>
               <p className='mt-2 text-sm text-stone-600'>
@@ -147,7 +147,7 @@ export default async function AdminOglasiPage({
                             : 'Nudim uslugu'}
                         </span>
 
-                        <span className='inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-semibold text-rose-600'>
+                        <span className='inline-flex rounded-full border border-rose-200 bg-rose-50 px-3 py-1 text-xs font-bold text-rose-600'>
                           {formatListingPrice({
                             price: listing.price,
                             priceCurrency: listing.price_currency as
@@ -162,7 +162,7 @@ export default async function AdminOglasiPage({
                         </span>
                       </div>
 
-                      <h2 className='text-lg font-semibold text-stone-900'>
+                      <h2 className='text-lg font-bold text-stone-900'>
                         {listing.title}
                       </h2>
 

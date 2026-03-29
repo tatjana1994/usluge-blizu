@@ -221,7 +221,7 @@ export default async function OglasDetaljPage({
 
                 <div className='mt-8 grid gap-4 sm:grid-cols-3'>
                   <div className='rounded-2xl border border-rose-100 bg-[#fff8f4] p-5'>
-                    <p className='text-[11px] font-semibold uppercase tracking-wider text-stone-500'>
+                    <p className='text-[11px] font-bold uppercase tracking-wider text-stone-500'>
                       {listing.price_type === 'hourly'
                         ? 'Cena po satu'
                         : 'Cena'}
@@ -242,26 +242,26 @@ export default async function OglasDetaljPage({
                   </div>
 
                   <div className='rounded-2xl border border-stone-200 bg-stone-50 p-5'>
-                    <p className='text-[11px] font-semibold uppercase tracking-wider text-stone-500'>
+                    <p className='text-[11px] font-bold uppercase tracking-wider text-stone-500'>
                       Grad
                     </p>
-                    <p className='mt-2 text-lg font-semibold text-stone-900'>
+                    <p className='mt-2 text-lg font-bold text-stone-900'>
                       {listing.city}
                     </p>
                   </div>
 
                   <div className='rounded-2xl border border-stone-200 bg-stone-50 p-5'>
-                    <p className='text-[11px] font-semibold uppercase tracking-wider text-stone-500'>
+                    <p className='text-[11px] font-bold uppercase tracking-wider text-stone-500'>
                       Lokacija
                     </p>
-                    <p className='mt-2 text-lg font-semibold text-stone-900'>
+                    <p className='mt-2 text-lg font-bold text-stone-900'>
                       {listing.area || 'Nije navedeno'}
                     </p>
                   </div>
                 </div>
 
                 <div className='mt-8 rounded-2xl border border-emerald-100 bg-emerald-50/70 p-5'>
-                  <p className='text-sm font-semibold text-emerald-800'>
+                  <p className='text-sm font-bold text-emerald-800'>
                     Direktan dogovor sa oglašivačem
                   </p>
                   <p className='mt-2 text-sm leading-6 text-emerald-900/80'>
@@ -271,7 +271,7 @@ export default async function OglasDetaljPage({
                 </div>
 
                 <div className='mt-10 border-t border-stone-100 pt-8'>
-                  <h3 className='text-sm font-semibold uppercase tracking-wider text-stone-500'>
+                  <h3 className='text-sm font-bold uppercase tracking-wider text-stone-500'>
                     Opis oglasa
                   </h3>
 
@@ -285,13 +285,13 @@ export default async function OglasDetaljPage({
             <aside className='h-fit self-start lg:sticky lg:top-32'>
               <SectionCard className='border-stone-200 bg-white p-4 shadow-md'>
                 <p className='text-sm font-medium text-rose-600'>Kontakt</p>
-                <h2 className='mt-2 text-2xl font-semibold tracking-tight text-stone-900'>
+                <h2 className='mt-2 text-2xl font-bold tracking-tight text-stone-900'>
                   Kontakt za oglas
                 </h2>
 
                 <div className='mt-6 space-y-3'>
                   <div className='rounded-xl border border-stone-200 bg-white p-4'>
-                    <p className='text-[11px] font-semibold uppercase tracking-wider text-stone-500'>
+                    <p className='text-[11px] font-bold uppercase tracking-wider text-stone-500'>
                       Kontakt osoba
                     </p>
                     <p className='mt-1 text-sm font-medium text-stone-900'>
@@ -300,7 +300,7 @@ export default async function OglasDetaljPage({
                   </div>
 
                   <div className='rounded-xl border border-stone-200 bg-white p-4'>
-                    <p className='text-[11px] font-semibold uppercase tracking-wider text-stone-500'>
+                    <p className='text-[11px] font-bold uppercase tracking-wider text-stone-500'>
                       Telefon
                     </p>
                     <p className='mt-1 text-sm font-medium text-stone-900'>
@@ -310,7 +310,7 @@ export default async function OglasDetaljPage({
 
                   {listing.contact_email ? (
                     <div className='rounded-xl border border-stone-200 bg-white p-4'>
-                      <p className='text-[11px] font-semibold uppercase tracking-wider text-stone-500'>
+                      <p className='text-[11px] font-bold uppercase tracking-wider text-stone-500'>
                         Email
                       </p>
                       <p className='mt-1 break-all text-sm font-medium text-stone-900'>
@@ -339,7 +339,7 @@ export default async function OglasDetaljPage({
                 </div>
 
                 <div className='mt-6 rounded-2xl border border-stone-200 bg-stone-50 p-4'>
-                  <p className='text-sm font-semibold text-stone-900'>
+                  <p className='text-sm font-bold text-stone-900'>
                     Podeli oglas
                   </p>
 
@@ -379,7 +379,7 @@ export default async function OglasDetaljPage({
             <div className='mb-6 flex items-end justify-between gap-4'>
               <div>
                 <p className='text-sm font-medium text-rose-600'>Još oglasa</p>
-                <h2 className='mt-2 text-3xl font-semibold tracking-tight text-stone-900'>
+                <h2 className='mt-2 text-3xl font-bold tracking-tight text-stone-900'>
                   Slični oglasi
                 </h2>
               </div>
