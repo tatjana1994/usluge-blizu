@@ -28,7 +28,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* LINKOVI */}
           <div className='flex flex-wrap gap-4 text-sm'>
             <Link
               href='/oglasi'
@@ -60,7 +59,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* DONJI DEO */}
         <div className='mt-10 flex flex-col gap-3 border-t border-stone-200 pt-6 text-xs text-stone-500 md:flex-row md:items-center md:justify-between'>
           <p>© {new Date().getFullYear()} UslugeBlizu. Sva prava zadržana.</p>
 
