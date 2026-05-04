@@ -6,6 +6,7 @@ import {
 import type { ListingCardItem } from '@/lib/types/listing';
 import { formatListingPrice } from '@/lib/utils/format-listing-price';
 import { TypeBadge } from '@/components/ui/type-badge';
+import Image from 'next/image';
 
 type ListingCardProps = {
   listing: ListingCardItem;
@@ -30,11 +31,12 @@ export function ListingCard({ listing }: ListingCardProps) {
       className='group block overflow-hidden rounded-[28px] border border-stone-300 bg-[#fffaf7] shadow-[0_8px_24px_rgba(47,38,34,0.06)] transition duration-200 hover:shadow-[0_14px_32px_rgba(47,38,34,0.10)]'
     >
       <div className='relative aspect-[16/10] overflow-hidden bg-[#f6ede7]'>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={imageSrc}
           alt={listing.title}
-          className='h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]'
+          fill
+          sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+          className='object-cover transition duration-300 group-hover:scale-[1.03]'
         />
 
         <div className='absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4'>
