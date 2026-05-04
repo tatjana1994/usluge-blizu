@@ -31,13 +31,16 @@ export function ListingCard({ listing }: ListingCardProps) {
       className='group block overflow-hidden rounded-[28px] border border-stone-300 bg-[#fffaf7] shadow-[0_8px_24px_rgba(47,38,34,0.06)] transition duration-200 hover:shadow-[0_14px_32px_rgba(47,38,34,0.10)]'
     >
       <div className='relative aspect-[16/10] overflow-hidden bg-[#f6ede7]'>
-        <Image
-          src={imageSrc}
-          alt={listing.title}
-          fill
-          sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-          className='object-cover transition duration-300 group-hover:scale-[1.03]'
-        />
+        <div className='relative aspect-[3/2] overflow-hidden rounded-2xl'>
+          <Image
+            src={imageSrc}
+            alt={listing.title}
+            fill
+            sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px'
+            quality={75}
+            className='object-cover transition duration-300 group-hover:scale-[1.03]'
+          />
+        </div>
 
         <div className='absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4'>
           <TypeBadge type={listing.type} />
